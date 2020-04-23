@@ -17,7 +17,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -67,6 +67,12 @@ public class SpringConfig implements WebMvcConfigurer{
 		return pc;
 	}
 	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/css").addResourceLocations("css/");
+		registry.addResourceHandler("/js").addResourceLocations("js/");
+	}
+	
 	@Bean
 	public ViewResolver resolver() {
 		return new InternalResourceViewResolver("/WEB-INF/",".jsp");
@@ -74,6 +80,7 @@ public class SpringConfig implements WebMvcConfigurer{
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/").setViewName("welcome");
 		registry.addViewController("/welcome").setViewName("welcome");
 	}
 }

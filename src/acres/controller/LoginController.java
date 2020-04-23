@@ -14,16 +14,15 @@ import acres.dao.UserRepository;
 import acres.dto.UserInfo;
 import acres.exception.UsernameNotFoundException;
 import acres.service.UserAuthenticationService;
+import acres.service.UserRetrievalService;
 
 @Controller
 @SessionAttributes("currentUser")
 public class LoginController {
 	
-	@Autowired
-	UserAuthenticationService userAuth;
+	@Autowired UserAuthenticationService userAuth;
 	
-	@Autowired
-	UserRepository userRepo;
+	@Autowired UserRetrievalService uRetrieve;
 	
 	@PostMapping("authenticate.test")
 	public ModelAndView confirmUser(HttpServletRequest request, @ModelAttribute UserInfo currentUser) throws UsernameNotFoundException {
@@ -38,7 +37,7 @@ public class LoginController {
 		}
 		
 		if(confirmStatus == 1) {
-			UserInfo dbUser = userRepo.getUser(currentUser.getUsername());
+			UserInfo dbUser = uRetrieve.retrieveUser(currentUser);
 			String dbPass = dbUser.getPassword1();
 			String inputPass = currentUser.getPassword1();
 			if(!dbPass.equals(inputPass)) {

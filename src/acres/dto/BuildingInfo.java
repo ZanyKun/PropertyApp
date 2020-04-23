@@ -35,7 +35,7 @@ public class BuildingInfo {
 	//For all options
 	String address;					//House Number and Street Name	(required)
 	String city;					//								(required)
-	String state;				//									(required)
+	String state;					//								(required)
 	String projectName;				//								(Not required)
 	boolean hideAddress;			//True to hide address from buyers, false to show
 	String description;				//Description for building

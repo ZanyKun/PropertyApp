@@ -11,17 +11,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import acres.dao.UserRepository;
 import acres.dto.UserInfo;
 import acres.service.UserAuthenticationService;
+import acres.service.UserRetrievalService;
 
 @Controller
 public class RegisterController {
-	@Autowired
-	UserAuthenticationService userAuth;
+	@Autowired UserAuthenticationService userAuth;
 	
-	@Autowired
-	UserRepository userRepo;
+	@Autowired UserRetrievalService uRetrieve;
 	
 	@PostMapping("register.test")
 	public ModelAndView registerUser(HttpServletRequest request, @Valid @ModelAttribute UserInfo newUser, BindingResult result) {
@@ -30,7 +28,7 @@ public class RegisterController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("newUser", newUser);
 		
-		if(!(userRepo.getUser(newUser.getUsername()) == null)) {
+		if(!(uRetrieve.retrieveUser(newUser) == null)) {
 			mv.setViewName("register");
 			mv.addObject("existsError", "<p style='color:red'>This username already exists.</p>");
 		}

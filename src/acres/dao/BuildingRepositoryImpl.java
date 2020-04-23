@@ -50,6 +50,7 @@ public class BuildingRepositoryImpl implements BuildingRepository{
 		return building;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<BuildingInfo> getAllBuildings(BuildingInfo b, List<String> filters) {
 		Session s = sf.openSession();
