@@ -1,7 +1,6 @@
-@charset "ISO-8859-1";
-
 .content{
 width:100%;
+
 }
 
 .main{
@@ -95,3 +94,12 @@ display:inline;
 color:#c1c5cc;
 font-family: 'Droid Serif', serif;
 }
+
+.box{
+        padding: 20px;
+        display: none;
+        margin-top: 20px;
+}
+
+.Residential{}
+.Commercial{}
