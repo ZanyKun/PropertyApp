@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('input[type="radio"]').click(function(){
+    $('input[name="listing_Type"]').click(function(){
         var inputValue = $(this).attr("value");
         var targetBox = $("." + inputValue);
         $(".box").not(targetBox).hide();
