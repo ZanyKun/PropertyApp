@@ -70,8 +70,8 @@
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="aa-header-right">
-                  <a href="register.html" class="aa-register">Register</a>
-                  <a href="signin.html" class="aa-login">Login</a>
+                  <a href="register.test" class="aa-register">Register</a>
+                  <a href="login.test" class="aa-login">Login</a>
                 </div>
               </div>
             </div>
@@ -96,13 +96,13 @@
           </button>
           <!-- LOGO -->                                               
           <!-- Text based logo -->
-           <a class="navbar-brand aa-logo" href="index.html"> Home <span>Property</span></a>
+           <a class="navbar-brand aa-logo" href="welcome.jsp"> Home <span>Property</span></a>
            <!-- Image based logo -->
            <!-- <a class="navbar-brand aa-logo-img" href="index.html"><img src="img/logo.png" alt="logo"></a> -->
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
-            <li class="active"><a href="index.html">HOME</a></li>
+            <li class="active"><a href="welcome.jsp">HOME</a></li>
              <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="properties.html">PROPERTIES <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">                
@@ -110,7 +110,7 @@
                 <li><a href="properties-detail.html">PROPERTIES DETAIL</a></li>                                            
               </ul>
             </li>
-            <li><a href="building.test">LIST PROPERTY</a></li>    
+            <li><a href="list_building.test">LIST PROPERTY</a></li>    
             <li><a href="contact.html">CONTACT</a></li>
            <li><a href="404.html">404 PAGE</a></li>
           </ul>                            
@@ -229,12 +229,12 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="aa-single-advance-search">
-                  <input type="text" placeholder="Type Your Location">
+                  <input type="text" placeholder="Type Your Desired Location">
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="aa-single-advance-search">
-                  <select>
+                  <select name="">
                    <option value="0" selected>Category</option>
                     <option value="1">Flat</option>
                     <option value="2">Land</option>
@@ -620,7 +620,7 @@
                 <a href="#">Support</a>
                 <a href="#">License</a>
                 <a href="#">FAQ</a>
-                <a href="#">Privacy & Term</a>
+                <a href="#">Privacy and Term</a>
               </div>
             </div>            
           </div>

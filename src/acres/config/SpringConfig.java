@@ -71,6 +71,8 @@ public class SpringConfig implements WebMvcConfigurer{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css").addResourceLocations("css/");
 		registry.addResourceHandler("/js").addResourceLocations("js/");
+		registry.addResourceHandler("/img").addResourceLocations("img/");
+		registry.addResourceHandler("/scss").addResourceLocations("scss/");
 	}
 	
 	@Bean
@@ -82,5 +84,7 @@ public class SpringConfig implements WebMvcConfigurer{
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("welcome");
 		registry.addViewController("/welcome").setViewName("welcome");
+		registry.addViewController("/login").setViewName("login");
+		registry.addViewController("/register").setViewName("register");
 	}
 }

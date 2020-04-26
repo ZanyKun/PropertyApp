@@ -52,7 +52,7 @@ public class BuildingRepositoryImpl implements BuildingRepository{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<BuildingInfo> getAllBuildings(BuildingInfo b, List<String> filters) {
+	public List<BuildingInfo> getAllBuildings(List<String> filters) {
 		Session s = sf.openSession();
 		s.beginTransaction();
 		Criteria cr = s.createCriteria(BuildingInfo.class);

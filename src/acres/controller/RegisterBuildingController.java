@@ -20,7 +20,7 @@ public class RegisterBuildingController {
 	
 	@Autowired BuildingService buildRep;
 	
-	@PostMapping("building.test")
+	@PostMapping("list_building.test")
 	public ModelAndView registerBuilding(HttpServletRequest request, @Valid @ModelAttribute ReBuildingType residentialInfo, BindingResult resResult, @Valid @ModelAttribute ComBuildingType commercialInfo, BindingResult comResult) {
 		ModelAndView mv = new ModelAndView();
 		String listingType = request.getParameter("listingType");
@@ -52,7 +52,7 @@ public class RegisterBuildingController {
 		return mv;
 	}
 	
-	@GetMapping("building.test")
+	@GetMapping("list_building.test")
 	public ModelAndView getBuildingForm() {
 		return new ModelAndView("buildingForm");
 	}

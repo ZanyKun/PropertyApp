@@ -1,9 +1,12 @@
 package acres.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acres.dao.BuildingRepository;
+import acres.dto.BuildingInfo;
 import acres.dto.ComBuildingType;
 import acres.dto.ReBuildingType;
 
@@ -22,4 +25,8 @@ public class BuildingServiceImpl implements BuildingService{
 		return buildRep.insertBuilding(c);
 	}
 
+	@Override
+	public List<BuildingInfo> retrieveAllBuildings(List<String> filters) {
+		return buildRep.getAllBuildings(filters);
+	}
 }

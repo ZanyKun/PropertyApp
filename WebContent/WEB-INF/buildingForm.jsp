@@ -7,10 +7,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>Home Property | Gallery</title>
+    <title>Home Property | Contact</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">   
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+   
     
     <!-- Font awesome -->
     <link href="css/font-awesome.css" rel="stylesheet">
@@ -103,13 +104,13 @@
           </button>
           <!-- LOGO -->                                               
           <!-- Text based logo -->
-          <a class="navbar-brand aa-logo" href="index.html"> Home <span>Property</span></a>
+          <a class="navbar-brand aa-logo" href="welcome.jsp"> Home <span>Property</span></a>
           <!-- Image based logo -->
           <!-- <a class="navbar-brand aa-logo-img" href="index.html"><img src="img/logo.png" alt="logo"></a> -->                   
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
-            <li><a href="index.html">HOME</a></li>
+            <li><a href="welcome.jsp">HOME</a></li>
              <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="properties.html">PROPERTIES <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">                
@@ -179,63 +180,86 @@
 
                 <!--Residential Division-->
                 <div class="Residential box" style="display:none">
-                    <input type="radio" name="reBuildingType" value="Apartment"/><label for="Apartment">Apartment/Flat/Building Floor</label>
-                    <select name="apartmentType">
-                        <option value="Studio Apartment">Studio Apartment</option>
-                        <option value="Residential Apartment">Residential Apartment</option>
-                        <option value="Serviced Apartment">Serviced Apartment</option>
-                        <option value="Independent Apartment">Independent/Builder Floor</option>
-                    </select><br/>
+                    <input type="radio" name="reBuildingType" value="Apartment"/><label for="Apartment">Apartment/Flat/Building Floor</label><br/>
                     <input type="radio" name="reBuildingType" value="Residental Land"/>
                     <label for="Residential Land">Residential Land</label><br/>
-                    <input type="radio" name="reBuildingType" value="House"><label for="House">House</label>
-                    <select for="houseType">
-                        <option value="Independent House/Villa">Independent House/Villa</option>
-                        <option value="Farm House">Farm House</option>
-                    </select><br/>
+                    <input type="radio" name="reBuildingType" value="House"><label for="House">House</label><br/>
                     <input type="radio" name="reBuildingType" value="Other">
-                    <label for="Other">Other</label>
+                    <label for="Other">Other</label><br/><br/>
+                    <div class="Apartment box2" style="display:none">
+                    	<label>Apartment Type:</label><br/>
+	                    <select name="apartmentType">
+	                        <option value="Studio Apartment">Studio Apartment</option>
+	                        <option value="Residential Apartment">Residential Apartment</option>
+	                        <option value="Serviced Apartment">Serviced Apartment</option>
+	                        <option value="Independent Apartment">Independent/Builder Floor</option>
+	                    </select>
+                    </div>
+                     <div class="House box2" style="display:none">
+                     	<label>House Type:</label>
+	                    <select name="houseType">
+	                        <option value="Independent House/Villa">Independent House/Villa</option>
+	                        <option value="Farm House">Farm House</option>
+	                    </select><br/>
+                    </div>
                 </div>
                 <br/><br/>
+                
                 <!--Commercial Division-->
                 <div class="Commercial box" style="display:none">
                     <input type="radio" name="comBuildingType" value="Office">
-                    <label for="Offices">Offices</label>
-                    <select name="officeType">
+                    <label for="Offices">Offices</label><br/>
+                    <input type="radio" name="comBuildingType" value="Retail">
+                    <label for="Retail">Retail</label><br/>
+                    <input type="radio" name="comBuildingType" value="Land">
+                    <label for="Land">Land</label><br/>
+                    <input type="radio" name="comBuildingType" value="Industry Storage">
+                    <label for="Industry Storage">Industry Storage</label><br/>
+                    <input type="radio" name="comBuildingType" value="Hospitality">
+                    <label for="Hospitality">Hospitality</label><br/>
+                    <input type="radio" name="comBuildingType" value="Others">
+                    <label for="Others">Others</label><br/><br/>
+                    <div class="Office box3">
+                    <label>Office Type:</label>
+                    <select name="officeType" style="display:none">
                         <option value="Commercial Office">Commercial Office</option>
                         <option value="Office in IT Park">Office in IT Park</option>
                         <option value="Office in Business Park">Office in Business Park</option>
                         <option value="Business Center">Businesss Center</option>
                         <option value="Time Share">Time Share</option>
-                    </select><br/>
-                    <input type="radio" name="comBuildingType" value="Retail">
-                    <label for="Retail">Retail</label>
-                    <select name="retailType">
-                        <option value="Commercial Shop">Commercial Shop</option>
-                        <option value="Commercial Showroom">Commercial Showroom</option>
-                        <option value="Space in Retail Mall">Space in Retail Mall</option>
-                    </select><br/>
-                    <input type="radio" name="comBuildingType" value="Land">
-                    <label for="Land">Land</label>
-                    <select name="landType">
+                    </select>
+                    </div>
+                    <div class="Retail box3" style="display:none">
+                    	<label>Retail Type:</label>
+                    	<select name="retailType">
+	                        <option value="Commercial Shop">Commercial Shop</option>
+	                        <option value="Commercial Showroom">Commercial Showroom</option>
+	                        <option value="Space in Retail Mall">Space in Retail Mall</option>
+                    	</select>
+                    </div>
+                    <div class="Land box3"style="display:none">
+                    	<label>Land Type:</label>
+                    	<select name="landType">
                         <option value="Commercial Land">Commercial Land</option>
                         <option value="Agricultural Land">Agricultural Land</option>
                         <option value="Industrial Land">Industrial Land</option>
-                    </select><br/>
-                    <input type="radio" name="comBuildingType" value="Industry Storage">
-                    <label for="Industry Storage">Industry Storage</label>
-                    <select name="industryType">
+                    </select>
+                    </div>
+                    <div class="Industry Storage box3" style="display:none">
+                    	<label>Storage Type:</label>
+                    	 <select name="industryType">
                         <option value="Warehouse">Warehouse</option>
                         <option value="Cold Storage">Cold Storage</option>
-                    </select><br/>
-                    <input type="radio" name="comBuildingType" value="Hospitality">
-                    <label for="Hospitality">Hospitality</label>
-                    <select name="hospitalityType">
-                        <option value="Hotel/Resorts">Hotel/Resorts</option>
-                        <option value="Guesthouse/Banquet Halls">Guesthouse/Banquet Halls</option>
-                    </select><br/>
-                    <input type="radio" name="comBuildingType" value="Others">
-                    <label for="Others">Others</label><br/>
+                    </select>
+                    </div>
+                    <div class="Hospitality box3" style="display:none">
+	                    <label>Hospitality Type:</label>
+	                    <select name="hospitalityType">
+	                        <option value="Hotel/Resorts">Hotel/Resorts</option>
+	                        <option value="Guesthouse/Banquet Halls">Guesthouse/Banquet Halls</option>
+	                    </select>
+                    </div>
+                    <br/><br/>
                     <label for="multipleProperty">Multiple Property Units?</label><br/>
                     <input type="radio" name="multipleProperty" value="Yes">
                     <label for="Yes">Yes</label>
@@ -243,6 +267,7 @@
                     <label for="No">No</label><br/><br/>
                     <br/>
                 </div>
+                
                 <input class="next" type="button" value="Let's Get Started!"/>
             </fieldset>
 
@@ -323,10 +348,25 @@
                         <option value="Power of Attorney">Power of Attorney</option>
                         <option value="Cooperative Society">Cooperative Society</option>
                     </select><br/>
-                    <label for="expectedRent">Expected Rent:<span style="color:red">*</span> $</label>
-                    <input type="number" name="expectedRent" min="600"><br/><br/>
-                    <label for="expectedPrice">Expected Price:<span style="color:red">*</span> $</label>
-                    <input type="number" name="expectedPrice" min="50000"><br/>
+                    <div class="Rent box4">
+                    	<label for="expectedRent">Expected Rent:<span style="color:red">*</span> $</label>
+                    	<input type="number" name="expectedRent" min="600"><br/><br/>
+                    </div>
+                    <div class="Sell box4">
+                    	<label for="expectedPrice">Expected Price:<span style="color:red">*</span> $</label>
+                    	<input type="number" name="expectedPrice" min="50000"><br/>
+                    </div>
+                    <br/>
+                    <label for="amenities">Choose amenities that building offers:</label><br/>
+                    <input type="checkbox" name="amenities" value="In-Unit Laundry"/><label>In-Unit Laundry</label><br/>
+                    <input type="checkbox" name="amenities" value="Nearby Parks"/><label>Nearby Parks</label><br/>
+                    <input type="checkbox" name="amenities" value="Free Wifi"/><label>Free Wifi</label><br/>
+                    <input type="checkbox" name="amenities" value="Nearby Shopping"/><label>Nearby Shopping</label><br/>
+                    <input type="checkbox" name="amenities" value="Public Transportation"/><label>Public Transportation</label><br/>
+                    <input type="checkbox" name="amenities" value="Nearby Entertainment"/><label>Nearby Entertainment</label><br/>
+                    <input type="checkbox" name="amenities" value="Included Heating"/><label>Included Heating</label><br/>
+                    <input type="checkbox" name="amenities" value="Concierge Service"/><label>Concierge Service</label>
+                    <input type="checkbox" name="amenities" value="Nearby Restaurants"/><label>Nearby Restaurants</label><br/>
                     <br/>
                     <input type="button" class="previous" value="Previous"/>
                     <input class="submit" type="submit" value="Submit Building">

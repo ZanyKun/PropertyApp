@@ -9,5 +9,5 @@ public interface BuildingRepository {
 	public boolean updateBuilding(BuildingInfo b);
 	public boolean deleteBuilding(BuildingInfo b);
 	public BuildingInfo getBuilding(int buildingId);
-	public List<BuildingInfo> getAllBuildings(BuildingInfo b, List<String> filters);
+	public List<BuildingInfo> getAllBuildings(List<String> filters);
 }

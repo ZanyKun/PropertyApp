@@ -1,6 +1,9 @@
 package acres.dto;
 
+import java.util.List;
+
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -54,6 +57,8 @@ public class BuildingInfo {
 	float expectedRent;				//For rent/lease
 	float expectePrice;				//For sell
 	
+	@ElementCollection
+	List<String> amenities;
 	
 	@ManyToOne
 	@JoinColumn(name = "building_Id")

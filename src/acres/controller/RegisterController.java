@@ -1,7 +1,6 @@
 package acres.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import acres.dto.UserInfo;
 import acres.service.UserAuthenticationService;
@@ -22,10 +22,12 @@ public class RegisterController {
 	@Autowired UserRetrievalService uRetrieve;
 	
 	@PostMapping("register.test")
-	public ModelAndView registerUser(HttpServletRequest request, @Valid @ModelAttribute UserInfo newUser, BindingResult result) {
+	public ModelAndView registerUser(HttpServletRequest request, @ModelAttribute UserInfo newUser, BindingResult result) {
 		String confirmPass = request.getParameter("password2");
 		int registerStatus = 1;
 		ModelAndView mv = new ModelAndView();
+		
+		
 		mv.addObject("newUser", newUser);
 		
 		if(!(uRetrieve.retrieveUser(newUser) == null)) {

@@ -7,6 +7,35 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    $('input[name="reBuildingType"]').click(function(){
+        var inputValue = $(this).attr("value");
+        var targetBox = $("." + inputValue);
+        $(".box2").not(targetBox).hide();
+        $(targetBox).show();
+    });
+});
+
+$(document).ready(function(){
+    $('input[name="comBuildingType"]').click(function(){
+        var inputValue = $(this).attr("value");
+        var targetBox = $("." + inputValue);
+        $(".box3").not(targetBox).hide();
+        $(targetBox).show();
+    });
+});
+
+$(document).ready(function(){
+    $('input[name="propertyList"]').click(function(){
+        var inputValue = $(this).attr("value");
+        var targetBox = $("." + inputValue);
+        $(".box4").not(targetBox).hide();
+        $(targetBox).show();
+    });
+});
+
+
+
 $(document).ready(function() {
 var count = 0; // To Count Blank Fields
 /*------------ Validation Function-----------------*/

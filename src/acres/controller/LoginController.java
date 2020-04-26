@@ -4,13 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import acres.dao.UserRepository;
 import acres.dto.UserInfo;
 import acres.exception.UsernameNotFoundException;
 import acres.service.UserAuthenticationService;
@@ -25,28 +25,34 @@ public class LoginController {
 	@Autowired UserRetrievalService uRetrieve;
 	
 	@PostMapping("authenticate.test")
-	public ModelAndView confirmUser(HttpServletRequest request, @ModelAttribute UserInfo currentUser) throws UsernameNotFoundException {
+	public ModelAndView confirmUser(HttpServletRequest request, @ModelAttribute UserInfo currentUser, BindingResult result) throws UsernameNotFoundException {
 		ModelAndView mv = new ModelAndView();
-		int confirmStatus = 1;
 		
-		if(userAuth.authenticateUser(currentUser)) {
+		if(result.hasErrors()) {
 			mv.setViewName("login");
-			mv.addObject("userError", "<p style='color: red'>The username does not exist.</p><br/>" + 
-									"<form action='register.test' method='get'><input type='submit' value='Click here to register for an account'></form>");
-			throw new UsernameNotFoundException();
+			mv.addObject("userError", "<p style='color: red'>No information has been provided.</p>");
 		}
-		
-		if(confirmStatus == 1) {
-			UserInfo dbUser = uRetrieve.retrieveUser(currentUser);
-			String dbPass = dbUser.getPassword1();
-			String inputPass = currentUser.getPassword1();
-			if(!dbPass.equals(inputPass)) {
+		else {
+			int confirmStatus = 1;
+			
+			if(userAuth.authenticateUser(currentUser)) {
 				mv.setViewName("login");
-				mv.addObject("passError", "<p style='color: red'>The password is incorrect</p>");
+				mv.addObject("userError", "<p style='color: red'>The username does not exist.</p><br/>");
+				confirmStatus = -1;
 			}
-			else {
-				mv.setViewName("loginComplete");
-				mv.addObject("currentUser", currentUser);
+			
+			if(confirmStatus == 1) {
+				UserInfo dbUser = uRetrieve.retrieveUser(currentUser);
+				String dbPass = dbUser.getPassword1();
+				String inputPass = currentUser.getPassword1();
+				if(!dbPass.equals(inputPass)) {
+					mv.setViewName("login");
+					mv.addObject("userError", "<p style='color: red'>The password is incorrect</p>");
+				}
+				else {
+					mv.setViewName("loginComplete");
+					mv.addObject("currentUser", currentUser);
+				}
 			}
 		}
 		return mv;
