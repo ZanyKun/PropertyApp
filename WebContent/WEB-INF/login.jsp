@@ -66,7 +66,7 @@
                     <div class="aa-single-submit">
                         ${userError}<br/><br/>
                         <input type="submit" value="Log In"/>
-                        <p>Don't Have A Account Yet? <a href="register.test">CREATE NOW!</a></p>
+                        <p>Don't Have an Account Yet? <a href="register.test">REGISTER NOW!</a></p>
                     </div>
                 </form>
             </div>

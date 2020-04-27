@@ -104,15 +104,15 @@
           <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
             <li class="active"><a href="welcome.jsp">HOME</a></li>
              <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="properties.html">PROPERTIES <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown">PROPERTIES <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">                
-                <li><a href="properties.html">PROPERTIES</a></li>
-                <li><a href="properties-detail.html">PROPERTIES DETAIL</a></li>                                            
+              	<li><a href="list_properties.test">ALL PROPERTIES</a></li>
+                <li><a href="residential_properties.test">RESIDENTIAL PROPERTIES</a></li>
+                <li><a href="commercial_properties.test">COMMERCIAL PROPERTIES</a></li>                                            
               </ul>
             </li>
-            <li><a href="list_building.test">LIST PROPERTY</a></li>    
+            <li><a href="list_property.test">LIST PROPERTY</a></li>    
             <li><a href="contact.html">CONTACT</a></li>
-           <li><a href="404.html">404 PAGE</a></li>
           </ul>                            
         </div><!--/.nav-collapse -->       
       </div>          
@@ -234,34 +234,52 @@
               </div>
               <div class="col-md-2">
                 <div class="aa-single-advance-search">
-                  <select name="">
+                  <select name="propertyType">
                    <option value="0" selected>Category</option>
-                    <option value="1">Flat</option>
-                    <option value="2">Land</option>
-                    <option value="3">Plot</option>
-                    <option value="4">Commercial</option>
+                    <option value="1">Residential</option>
+                    <option value="2">Commercial</option>
                   </select>
                 </div>
               </div>
               <div class="col-md-2">
                  <div class="aa-single-advance-search">
-                  <select>
-                    <option value="0" selected>Type</option>
-                    <option value="1">Flat</option>
-                    <option value="2">Land</option>
-                    <option value="3">Plot</option>
-                    <option value="4">Commercial</option>
+                  <select name="buildingType">
+                    <option value="0" selected>Building Type</option>
+                    <optgroup label="Residential Listings">
+                    	<option value="Studio Apartment">Studio Apartment</option>
+                    	<option value="Residential Apartment">Residential Apartment</option>
+                    	<option value="Serviced Apartment">Serviced Apartment</option>
+                    	<option value="Independent Apartment">Independent Apartment</option>
+                    	<option value="Residential Land">Residential Land</option>
+                    	<option value="Independent House">Independent House</option>
+                    	<option value="Farm House">Farm House</option>
+                    </optgroup>
+                    <optgroup label="Commercial Listings">
+                    	<option value="Commercial Office">Commercial Office</option>
+                    	<option value="Office in IT Park">Office in IT Park</option>
+                    	<option value="Office in Business Par">Office in Business Park</option>
+                    	<option value="Business Center">Business Center</option>
+                    	<option value="Time Share">Time Share Office</option>
+                    	<option value="Commercial Shop">Commercial Shop</option>
+                    	<option value="Commercial Showroom">Commercial Showroom</option>
+                    	<option value="Space in Retail Mall">Space in Retail Mall</option>
+                    	<option value="Commercial Land">Commercial Land</option>
+                    	<option value="Agricultural Land">Agricultural Land</option>
+                    	<option value="Industrial Land">Industrial Land</option>
+                    	<option value="Warehouse">Warehouse Storage</option>
+                    	<option value="Cold">Cold Storage</option>
+                    	<option value="Hotel/Resorts">Hotel/Resorts</option>
+                    	<option value="Guesthouse/Banquet Halls">Guesthouse/Banquet Halls</option>
+                    </optgroup>
                   </select>
               </div>
               </div>
               <div class="col-md-2">
                  <div class="aa-single-advance-search">
-                  <select>
-                    <option value="0" selected>Type</option>
-                    <option value="1">Flat</option>
-                    <option value="2">Land</option>
-                    <option value="3">Plot</option>
-                    <option value="4">Commercial</option>
+                  <select name="listingType">
+                    <option value="0" selected>Listing</option>
+                    <option value="Sale">Sale</option>
+                    <option value="Rent">Rent</option>
                   </select>
               </div>
               </div>
@@ -313,7 +331,7 @@
             <div class="row">
               <div class="col-md-5">
                 <div class="aa-about-us-left">
-                  <img src="img/about-us.png" alt="image">
+                  <img src="img/about-us.jpg" alt="image">
                 </div>
               </div>
               <div class="col-md-7">

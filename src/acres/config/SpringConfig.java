@@ -17,6 +17,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -26,6 +27,7 @@ import acres.dto.BuildingInfo;
 import acres.dto.ComBuildingType;
 import acres.dto.ReBuildingType;
 import acres.dto.UserInfo;
+import acres.filter.RequestFilter;
 
 @EnableWebMvc
 @Configuration
@@ -86,5 +88,11 @@ public class SpringConfig implements WebMvcConfigurer{
 		registry.addViewController("/welcome").setViewName("welcome");
 		registry.addViewController("/login").setViewName("login");
 		registry.addViewController("/register").setViewName("register");
+		registry.addViewController("/list_property").setViewName("list_property");
+	}
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new RequestFilter()).addPathPatterns("*.test");
 	}
 }

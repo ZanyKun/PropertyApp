@@ -110,8 +110,8 @@ color:#c1c5cc;
         margin-top: 20px;
 }
 
-
-.Residential{}
-.Commercial{}
-.Apartment{}
-.House{}
+.box4{
+        padding: 20px;
+        display: none;
+        margin-top: 20px;
+}

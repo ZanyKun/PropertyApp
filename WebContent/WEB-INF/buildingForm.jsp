@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false" import="acres.dto.UserInfo"%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -79,8 +79,8 @@
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="aa-header-right">
-                  <a href="register.html" class="aa-register">Register</a>
-                  <a href="signin.html" class="aa-login">Login</a>
+                  <a href="register.test" class="aa-register">Register</a>
+                  <a href="login.test" class="aa-login">Login</a>
                 </div>
               </div>
             </div>
@@ -112,15 +112,15 @@
           <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
             <li><a href="welcome.jsp">HOME</a></li>
              <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="properties.html">PROPERTIES <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">                
-                <li><a href="properties.html">PROPERTIES</a></li>
-                <li><a href="properties-detail.html">PROPERTIES DETAIL</a></li>                                            
+              <a class="dropdown-toggle" data-toggle="dropdown" href="properties.test">PROPERTIES <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu"> 
+              	<li><a href="list_properties.test">ALL PROPERTIES</a></li>               
+                <li><a href="residential_properties.test">RESIDENTIAL PROPERTIES</a></li>
+                <li><a href="commercial_properties.test">COMMERCIAL PROPERTIES</a></li>                                            
               </ul>
             </li>
-            <li class="active"><a href="gallery.html">LIST PROPERTY</a></li>                                         
-            <li><a href="contact.html">CONTACT</a></li>
-            <li><a href="404.html">404 PAGE</a></li>            
+            <li class="active"><a href="list_property.test">LIST PROPERTY</a></li>                                         
+            <li><a href="contact.html">CONTACT</a></li>          
           </ul>                          
         </div><!--/.nav-collapse -->       
       </div>          
@@ -138,7 +138,7 @@
             <h2>List Property</h2>
             <ol class="breadcrumb">
             <li><a href="#">HOME</a></li>            
-            <li class="active">List Property</li>
+            <li class="active">LIST PROPERTY</li>
           </ol>
           </div>
         </div>
@@ -146,7 +146,7 @@
     </div>
   </section> 
   <!-- End Property header  -->
-
+<% UserInfo user = (UserInfo) session.getAttribute("currentUser"); %>
   <section id="aa-gallery">
     <div class="container">
       <div class="row">
@@ -156,39 +156,34 @@
               <h2>Let's Post Your Property!</h2>
               <span></span>
                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi commodi eum dolorem aut eos, debitis quaerat reiciendis, officiis consectetur ducimus atque suscipit ab at tempora!</p>
+               <% if (user ==  null){
+            	   out.print("<a href='login.test' style='text-decoration: underline'>Please Login to List a Property</a><br/>");
+               } %>
+               ${error}
             </div>
             <!-- Form Start -->
             
-            <form id="buildingForm" action="building.test" method="post">
+            <form id="buildingForm" action="insert_property.test" method="post">
             <!--First Tab-->
             <fieldset id="first" class="tab">
-                <label for="userType">You are:<span style="color: red">*</span></label><br/>
-                <input type="radio" name="userType" value="Owner"/>
-                <label for="Owner">Owner</label>
-                <input type="radio" name="userType" value="Dealer"/>
-                <label for="Dealer">Dealer</label>
-                <br/><br/>
-                    <label>List Property For:</label><br/>
-                <select name="propertyList">
-                    <option value="Sell">Sell</option>
-                    <option value="Rent">Rent</option>
-                </select>
+            		<br/>
+                    <label>List Property For:<span style="color:red">*</span></label><br/>
+                <input type="radio" name="propertyList" value="Sell" required/><label>Sell</label><br/>
+                <input type="radio" name="propertyList" value="Rent" required/><label>Rent</label>
                 <br/><br/>
                     <label for="listing_type">Property Type:<span style="color: red">*</span></label><br/>
-                    <input type="radio" name="listing_Type" value="Residential"/><label for="listing_Type">Residential</label>
-                <input type="radio" name="listing_Type" value="Commercial"/><label for="Commercial">Commercial</label><br/>
+                    <input type="radio" name="listingType" value="Residential" required/><label for="listing_Type">Residential</label>
+                <input type="radio" name="listingType" value="Commercial" required/><label for="Commercial">Commercial</label><br/>
 
                 <!--Residential Division-->
                 <div class="Residential box" style="display:none">
                     <input type="radio" name="reBuildingType" value="Apartment"/><label for="Apartment">Apartment/Flat/Building Floor</label><br/>
-                    <input type="radio" name="reBuildingType" value="Residental Land"/>
-                    <label for="Residential Land">Residential Land</label><br/>
-                    <input type="radio" name="reBuildingType" value="House"><label for="House">House</label><br/>
-                    <input type="radio" name="reBuildingType" value="Other">
+                    <input type="radio" name="reBuildingType" value="Residental Land"/><label for="Residential Land">Residential Land</label><br/>
+                    <input type="radio" name="reBuildingType" value="House" required><label for="House">House</label><br/><input type="radio" name="reBuildingType" value="Other">
                     <label for="Other">Other</label><br/><br/>
                     <div class="Apartment box2" style="display:none">
                     	<label>Apartment Type:</label><br/>
-	                    <select name="apartmentType">
+	                    <select name="apartmentType" required>
 	                        <option value="Studio Apartment">Studio Apartment</option>
 	                        <option value="Residential Apartment">Residential Apartment</option>
 	                        <option value="Serviced Apartment">Serviced Apartment</option>
@@ -203,7 +198,6 @@
 	                    </select><br/>
                     </div>
                 </div>
-                <br/><br/>
                 
                 <!--Commercial Division-->
                 <div class="Commercial box" style="display:none">
@@ -213,21 +207,21 @@
                     <label for="Retail">Retail</label><br/>
                     <input type="radio" name="comBuildingType" value="Land">
                     <label for="Land">Land</label><br/>
-                    <input type="radio" name="comBuildingType" value="Industry Storage">
+                    <input type="radio" name="comBuildingType" value="Storage">
                     <label for="Industry Storage">Industry Storage</label><br/>
                     <input type="radio" name="comBuildingType" value="Hospitality">
                     <label for="Hospitality">Hospitality</label><br/>
                     <input type="radio" name="comBuildingType" value="Others">
                     <label for="Others">Others</label><br/><br/>
-                    <div class="Office box3">
-                    <label>Office Type:</label>
-                    <select name="officeType" style="display:none">
-                        <option value="Commercial Office">Commercial Office</option>
-                        <option value="Office in IT Park">Office in IT Park</option>
-                        <option value="Office in Business Park">Office in Business Park</option>
-                        <option value="Business Center">Businesss Center</option>
-                        <option value="Time Share">Time Share</option>
-                    </select>
+                    <div class="Office box3" style="display:none">
+                    	<label>Office Type:</label>
+	                    <select name="officeType">
+	                        <option value="Commercial Office">Commercial Office</option>
+	                        <option value="Office in IT Park">Office in IT Park</option>
+	                        <option value="Office in Business Park">Office in Business Park</option>
+	                        <option value="Business Center">Businesss Center</option>
+	                        <option value="Time Share">Time Share Office</option>
+	                    </select>
                     </div>
                     <div class="Retail box3" style="display:none">
                     	<label>Retail Type:</label>
@@ -245,7 +239,7 @@
                         <option value="Industrial Land">Industrial Land</option>
                     </select>
                     </div>
-                    <div class="Industry Storage box3" style="display:none">
+                    <div class="Storage box3" style="display:none">
                     	<label>Storage Type:</label>
                     	 <select name="industryType">
                         <option value="Warehouse">Warehouse</option>
@@ -274,13 +268,65 @@
             <!--Second Tab-->
             <fieldset class="tab">
                    <label for="address">Address<span style="color:red">*</span></label>
-                   <input type="text" name="address" placeholder="House Number and Street Name"><br/>
+                   <input type="text" name="address" placeholder="House Number and Street Name" required><br/>
                     <label for="city">City<span style="color:red">*</span></label>
-                   <input type="text" name="city" placeholder="City"><br/>
+                   <input type="text" name="city" placeholder="City" required><br/>
                     <label for="state">State<span style="color:red">*</span></label>
-                   <input type="text" name="state" placeholder="State"><br/>
-                    <label for="projectName">Project Name (Not required)</label>
-                   <input type="text" name="projectName" placeholder="Project Name"><br/><br/>
+                    <select name="state" required>
+						<option value="AL">Alabama</option>
+						<option value="AK">Alaska</option>
+						<option value="AZ">Arizona</option>
+						<option value="AR">Arkansas</option>
+						<option value="CA">California</option>
+						<option value="CO">Colorado</option>
+						<option value="CT">Connecticut</option>
+						<option value="DE">Delaware</option>
+						<option value="DC">District Of Columbia</option>
+						<option value="FL">Florida</option>
+						<option value="GA">Georgia</option>
+						<option value="HI">Hawaii</option>
+						<option value="ID">Idaho</option>
+						<option value="IL">Illinois</option>
+						<option value="IN">Indiana</option>
+						<option value="IA">Iowa</option>
+						<option value="KS">Kansas</option>
+						<option value="KY">Kentucky</option>
+						<option value="LA">Louisiana</option>
+						<option value="ME">Maine</option>
+						<option value="MD">Maryland</option>
+						<option value="MA">Massachusetts</option>
+						<option value="MI">Michigan</option>
+						<option value="MN">Minnesota</option>
+						<option value="MS">Mississippi</option>
+						<option value="MO">Missouri</option>
+						<option value="MT">Montana</option>
+						<option value="NE">Nebraska</option>
+						<option value="NV">Nevada</option>
+						<option value="NH">New Hampshire</option>
+						<option value="NJ">New Jersey</option>
+						<option value="NM">New Mexico</option>
+						<option value="NY">New York</option>
+						<option value="NC">North Carolina</option>
+						<option value="ND">North Dakota</option>
+						<option value="OH">Ohio</option>
+						<option value="OK">Oklahoma</option>
+						<option value="OR">Oregon</option>
+						<option value="PA">Pennsylvania</option>
+						<option value="RI">Rhode Island</option>
+						<option value="SC">South Carolina</option>
+						<option value="SD">South Dakota</option>
+						<option value="TN">Tennessee</option>
+						<option value="TX">Texas</option>
+						<option value="UT">Utah</option>
+						<option value="VT">Vermont</option>
+						<option value="VA">Virginia</option>
+						<option value="WA">Washington</option>
+						<option value="WV">West Virginia</option>
+						<option value="WI">Wisconsin</option>
+						<option value="WY">Wyoming</option>
+					</select><br/>
+                    <label for="projectName">Housing Title<span style="color:red">*</span></label>
+                   <input type="text" name="projectName" placeholder="Housing Title" required><br/><br/>
                 <br/>
                 <input type="button" class="previous" value="Previous"/>
                 <input type="button" class="next" value="Next">
@@ -288,12 +334,12 @@
 
             <!--Third Tab-->
             <fieldset class="tab">
-                <label for="plotArea">Plot Area</label>
-                <input type="text" name="plotArea" placeholder="Plot Area">
+                <label for="plotArea">Plot Area<span style="color:red">*</span></label>
+                <input type="text" name="plotArea" placeholder="Plot Area" required>
                 <label>sq. ft</label><br/>
                 <br/>
                 <label for="washroomNum">Washrooms:<span style="color:red">*</span></label><br/>
-                <select value="washroomNum">
+                <select value="washroomNum" required>
                     <option value="None">None</option>
                     <option value="Shared">Shared</option>
                     <option value="1">1</option>
@@ -310,12 +356,12 @@
                 <br/>
                 <br/>
                 <label for="availability">Availability:<span style="color:red">*</span></label>
-                <select value="availability">
+                <select name="availability" required>
                     <option value="Under Construction">Under Construction</option>
                     <option value="Ready to Move">Ready to Move</option>
                 </select><br/>
                 <label for="possessionBy">Possession By:<span style="color:red">*</span></label>
-                <select value="possessionBy">
+                <select name="possessionBy" required>
                     <option value="Within 3 months">Within 3 months</option>
                     <option value="Within 6 months">Within 6 months</option>
                     <option value="By 2021">By 2021</option>
@@ -326,7 +372,7 @@
                     <option value="By 2026">By 2026</option>
                 </select><br/>
                 <label for="ageOfProperty">Age of Property:<span style="color:red">*</span></label>
-                <select value="ageOfProperty">
+                <select name="ageOfProperty" required>
                     <option value="0-1 year old">0-1 year old</option>
                     <option value="2-3 years old">2-3 years old</option>
                     <option value="4-6 years old">4-6 years old</option>
@@ -342,21 +388,23 @@
             <!--Fourth Tab-->
             <fieldset class="tab">
                     <label for="ownership">Ownership:<span style="color:red">*</span></label>
-                    <select name="ownership">
+                    <select name="ownership" required>
                         <option value="Freehold">Freehold</option>
                         <option value="Leasehold">Leasehold</option>
                         <option value="Power of Attorney">Power of Attorney</option>
                         <option value="Cooperative Society">Cooperative Society</option>
-                    </select><br/>
-                    <div class="Rent box4">
+                    </select><br/><br/>
+                    <div class="Rent box4" style="display:none">
                     	<label for="expectedRent">Expected Rent:<span style="color:red">*</span> $</label>
-                    	<input type="number" name="expectedRent" min="600"><br/><br/>
+                    	<input type="text" name="expectedRent"><br/><br/>
                     </div>
-                    <div class="Sell box4">
+                    <div class="Sell box4" style="display:none">
                     	<label for="expectedPrice">Expected Price:<span style="color:red">*</span> $</label>
-                    	<input type="number" name="expectedPrice" min="50000"><br/>
+                    	<input type="text" name="expectedPrice"><br/>
                     </div>
                     <br/>
+                    <label>Provide a description for your property:<span style="color:red">*</span></label><br/>
+                    <textarea name="description" rows="13" cols="60" required></textarea><br/><br/>
                     <label for="amenities">Choose amenities that building offers:</label><br/>
                     <input type="checkbox" name="amenities" value="In-Unit Laundry"/><label>In-Unit Laundry</label><br/>
                     <input type="checkbox" name="amenities" value="Nearby Parks"/><label>Nearby Parks</label><br/>
@@ -365,7 +413,7 @@
                     <input type="checkbox" name="amenities" value="Public Transportation"/><label>Public Transportation</label><br/>
                     <input type="checkbox" name="amenities" value="Nearby Entertainment"/><label>Nearby Entertainment</label><br/>
                     <input type="checkbox" name="amenities" value="Included Heating"/><label>Included Heating</label><br/>
-                    <input type="checkbox" name="amenities" value="Concierge Service"/><label>Concierge Service</label>
+                    <input type="checkbox" name="amenities" value="Concierge Service"/><label>Concierge Service</label><br/>
                     <input type="checkbox" name="amenities" value="Nearby Restaurants"/><label>Nearby Restaurants</label><br/>
                     <br/>
                     <input type="button" class="previous" value="Previous"/>
@@ -378,8 +426,11 @@
                 <span class="progress"></span>
             </ul>
         </form>
+        </div>
+        </div>
+        </div>
+        </div>
  </section>
-
 
   <!-- Footer -->
   <footer id="aa-footer">

@@ -9,5 +9,5 @@ import acres.dto.ReBuildingType;
 public interface BuildingService {
 	boolean insertResidentialBuilding(ReBuildingType r);
 	boolean insertCommercialBuilding(ComBuildingType c);
-	List<BuildingInfo> retrieveAllBuildings(List<String> filters);
+	List<BuildingInfo> retrieveAllBuildings();
 }

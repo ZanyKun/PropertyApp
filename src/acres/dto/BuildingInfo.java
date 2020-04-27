@@ -34,6 +34,7 @@ public class BuildingInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int buildingId;
+	String propertyList;			//Sell, Rent
 	
 	//For all options
 	String address;					//House Number and Street Name	(required)
@@ -54,8 +55,8 @@ public class BuildingInfo {
 	String possessionBy;			//Time til ownership
 	String ageOfProperty;			//For Ready to Move: 0-1 year old, 2-3 year old etc...
 	
-	float expectedRent;				//For rent/lease
-	float expectePrice;				//For sell
+	String expectedRent;				//For rent/lease
+	String expectedPrice;			//For sell
 	
 	@ElementCollection
 	List<String> amenities;

@@ -1,6 +1,7 @@
 package acres.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class LoginController {
 	@Autowired UserRetrievalService uRetrieve;
 	
 	@PostMapping("authenticate.test")
-	public ModelAndView confirmUser(HttpServletRequest request, @ModelAttribute UserInfo currentUser, BindingResult result) throws UsernameNotFoundException {
+	public ModelAndView confirmUser(@ModelAttribute UserInfo currentUser, BindingResult result, HttpSession session) throws UsernameNotFoundException {
 		ModelAndView mv = new ModelAndView();
 		
 		if(result.hasErrors()) {
@@ -51,7 +52,7 @@ public class LoginController {
 				}
 				else {
 					mv.setViewName("loginComplete");
-					mv.addObject("currentUser", currentUser);
+					session.setAttribute("currentUser", currentUser);
 				}
 			}
 		}

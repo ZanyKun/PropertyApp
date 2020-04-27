@@ -33,6 +33,7 @@ public class RegisterController {
 		if(!(uRetrieve.retrieveUser(newUser) == null)) {
 			mv.setViewName("register");
 			mv.addObject("existsError", "<p style='color:red'>This username already exists.</p>");
+			registerStatus = -1;
 		}
 		
 		if(newUser.getUsername().equals("")) {

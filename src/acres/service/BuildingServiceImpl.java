@@ -26,7 +26,8 @@ public class BuildingServiceImpl implements BuildingService{
 	}
 
 	@Override
-	public List<BuildingInfo> retrieveAllBuildings(List<String> filters) {
-		return buildRep.getAllBuildings(filters);
+	public List<BuildingInfo> retrieveAllBuildings() {
+		return buildRep.getAllBuildings();
 	}
+	
 }

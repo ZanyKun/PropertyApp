@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta http-equiv="Refresh" content="3; url=welcome.jsp">
-    <title>Home Property | Registration Complete</title>
+    <title>Home Property | Listing Complete</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
@@ -52,8 +51,9 @@
           <div class="aa-signin-area">
             <div class="aa-signin-form">
               <div class="aa-signin-form-title">
-                <h1>You have successfully created an account on House Property.</h1>
-                <h2>You'll be able to log in from the homepage.</h2>
+                <h1>The listing was saved successfully.</h1>
+                <h3><a>You can see your listing here.</a></h3>
+                <h2><a href="welcome.jsp">Continue to homepage through here.</a></h2>
               </div>
             </div>
           </div>
