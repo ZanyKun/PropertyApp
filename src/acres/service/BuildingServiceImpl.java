@@ -29,5 +29,11 @@ public class BuildingServiceImpl implements BuildingService{
 	public List<BuildingInfo> retrieveAllBuildings() {
 		return buildRep.getAllBuildings();
 	}
+
+	@Override
+	public List<BuildingInfo> retrieveBuildingsBySearch(String city, String state, String propertyType,
+			String buildingType, String listingType, double minArea, double maxArea, float minBudget, float maxBudget) {
+		return buildRep.getBuildingsBySearch(city, state, propertyType, buildingType, listingType, minArea, maxArea, minBudget, maxBudget);
+	}
 	
 }

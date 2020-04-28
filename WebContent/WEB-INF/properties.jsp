@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isELIgnored="false" import="acres.dto.BuildingInfo,acres.dto.ReBuildingType,acres.dto.ComBuildingType"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false" import="acres.dto.UserInfo, acres.dto.BuildingInfo,acres.dto.ReBuildingType,acres.dto.ComBuildingType"%>
     
     <%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
     
@@ -73,10 +73,17 @@
                 </div>              
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6">
-                <div class="aa-header-right">
-                  <a href="register.html" class="aa-register">Register</a>
-                  <a href="signin.html" class="aa-login">Login</a>
-                </div>
+                <%
+				  UserInfo user = (UserInfo) session.getAttribute("currentUser");
+				  if(user == null){
+						out.print("<div class='aa-header-right' style='display:block'>" +
+				                  "<a href='register.test' class='aa-register'>Register</a>" +
+				                  "<a href='login.test' class='aa-login'>Login</a> </div>");
+				  }else{
+						out.print("<div class='aa-header-right' id='loggedIn' style='display:block'>" +
+			                	"<a href='user_info' class='aa-register'>" + user.getUsername() + "</a>" +
+			                	"<a href='logout.test' class='aa-login'>Logout</a></div>"); 
+				  } %>
               </div>
             </div>
           </div>
@@ -114,7 +121,7 @@
                 <li><a href="properties-detail.html">RESIDENTIAL PROPERTIES</a></li>
               </ul>
             </li>
-            <li><a href="insert_property.test">LIST PROPERTY</a></li>
+            <li><a href="list_property.test">LIST PROPERTY</a></li>
             <li><a href="contact.html">CONTACT</a></li>
           </ul>                           
         </div><!--/.nav-collapse -->       
@@ -159,7 +166,7 @@
             <!-- Start properties content body -->
             <div class="aa-properties-content-body">
               <ul class="aa-properties-nav">
-              <core:forEach var="buildings" items="${pageScope.buildings}">
+              <core:forEach var="buildings" items="${buildings}">
               	<li>
                   <article class="aa-properties-item">
                     <a class="aa-properties-item-img" href="#">
@@ -170,10 +177,9 @@
                     </div>
                     <div class="aa-properties-item-content">
                       <div class="aa-properties-info">
-                        <span>5 Rooms</span>
-                        <span>2 Beds</span>
-                        <span>3 Baths</span>
-                        <span>1100 SQ FT</span>
+                        <span>${buildings.roomNum} Rooms</span>
+                        <span>${buildings.washroomNum} Baths</span>
+                        <span>${buildings.plotArea} SQ FT</span>
                       </div>
                       <div class="aa-properties-about">
                         <h3><a href="#">${buildings.projectName}</a></h3>
@@ -182,13 +188,13 @@
                       <div class="aa-properties-detial">
                         <span class="aa-price">
                           <core:if test="${buildings.expectedRent == null}">
-                          	${buildings.expectedPrice}
+                          	$ ${buildings.expectedPrice} 
                           </core:if>
                           <core:if test="${buildings.expectedPrice == null}">
-                          	${buildings.expectedRent}
+                          	$ ${buildings.expectedRent} / month
                           </core:if>
                         </span>
-                        <a class="aa-secondary-btn" href="#">View Details</a>
+                        <a class="aa-secondary-btn" href="property_details">View Details</a>
                       </div>
                     </div>
                   </article>
@@ -254,9 +260,65 @@
             <!-- Start Single properties sidebar -->
             <div class="aa-properties-single-sidebar">
               <h3>Properties Search</h3>
-              <form action="">
+              <form action="advance_search.test" method="post">
                 <div class="aa-single-advance-search">
-                  <input type="text" placeholder="Type Your Location">
+                  <input type="text" placeholder="Enter City">
+                </div>
+                <div class="aa-single-advance-search">
+                	<select name="state" required>
+              			<option>State</option>
+						<option value="AL">Alabama</option>
+						<option value="AK">Alaska</option>
+						<option value="AZ">Arizona</option>
+						<option value="AR">Arkansas</option>
+						<option value="CA">California</option>
+						<option value="CO">Colorado</option>
+						<option value="CT">Connecticut</option>
+						<option value="DE">Delaware</option>
+						<option value="DC">District Of Columbia</option>
+						<option value="FL">Florida</option>
+						<option value="GA">Georgia</option>
+						<option value="HI">Hawaii</option>
+						<option value="ID">Idaho</option>
+						<option value="IL">Illinois</option>
+						<option value="IN">Indiana</option>
+						<option value="IA">Iowa</option>
+						<option value="KS">Kansas</option>
+						<option value="KY">Kentucky</option>
+						<option value="LA">Louisiana</option>
+						<option value="ME">Maine</option>
+						<option value="MD">Maryland</option>
+						<option value="MA">Massachusetts</option>
+						<option value="MI">Michigan</option>
+						<option value="MN">Minnesota</option>
+						<option value="MS">Mississippi</option>
+						<option value="MO">Missouri</option>
+						<option value="MT">Montana</option>
+						<option value="NE">Nebraska</option>
+						<option value="NV">Nevada</option>
+						<option value="NH">New Hampshire</option>
+						<option value="NJ">New Jersey</option>
+						<option value="NM">New Mexico</option>
+						<option value="NY">New York</option>
+						<option value="NC">North Carolina</option>
+						<option value="ND">North Dakota</option>
+						<option value="OH">Ohio</option>
+						<option value="OK">Oklahoma</option>
+						<option value="OR">Oregon</option>
+						<option value="PA">Pennsylvania</option>
+						<option value="RI">Rhode Island</option>
+						<option value="SC">South Carolina</option>
+						<option value="SD">South Dakota</option>
+						<option value="TN">Tennessee</option>
+						<option value="TX">Texas</option>
+						<option value="UT">Utah</option>
+						<option value="VT">Vermont</option>
+						<option value="VA">Virginia</option>
+						<option value="WA">Washington</option>
+						<option value="WV">West Virginia</option>
+						<option value="WI">Wisconsin</option>
+						<option value="WY">Wyoming</option>
+					</select>
                 </div>
                 <div class="aa-single-advance-search">
                   <select name="propertyType">
@@ -399,7 +461,7 @@
                 <a href="#">Support</a>
                 <a href="#">License</a>
                 <a href="#">FAQ</a>
-                <a href="#">Privacy & Term</a>
+                <a href="#">Privacy and Term</a>
               </div>
             </div>            
           </div>

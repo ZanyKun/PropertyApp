@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import acres.dto.ComBuildingType;
 import acres.dto.ReBuildingType;
+import acres.dto.UserInfo;
 import acres.service.BuildingService;
 
 @Controller
@@ -19,9 +20,17 @@ public class RegisterBuildingController {
 	
 	@Autowired BuildingService buildRep;
 	
-	@PostMapping("insert_property.test")
+	@PostMapping("/insert_property.test")
 	public ModelAndView registerBuilding(HttpServletRequest request, @ModelAttribute ReBuildingType residentialInfo, @ModelAttribute ComBuildingType commercialInfo, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		UserInfo user = (UserInfo) request.getAttribute("currentUser");
+//		float rent = Float.parseFloat(request.getParameter("expectedRent"));
+//		float price = Float.parseFloat(request.getParameter("expectedPrice"));
+//		residentialInfo.setExpectedRent(rent);
+//		residentialInfo.setExpectedPrice(price);
+//		commercialInfo.setExpectedRent(rent);
+//		commercialInfo.setExpectedPrice(price);
+		
 		String propertyType = request.getParameter("listingType");
 		
 		if(session.getAttribute("currentUser") == null) {
@@ -35,11 +44,13 @@ public class RegisterBuildingController {
 				mv.addObject("error", "<p>No information has been provided</p>");
 			}
 			else if(propertyType.equals("Residential")) {
+					residentialInfo.setUser(user);
 					buildRep.insertResidentialBuilding(residentialInfo);
 					session.setAttribute("residentialInfo", residentialInfo);
 					mv.setViewName("listingComplete");
 			}
 			else if(propertyType.equals("Commercial")) {
+					commercialInfo.setUser(user);
 					buildRep.insertCommercialBuilding(commercialInfo);
 					session.setAttribute("commercialInfo", commercialInfo);
 					mv.setViewName("listingComplete");

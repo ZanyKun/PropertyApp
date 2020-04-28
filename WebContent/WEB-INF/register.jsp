@@ -59,13 +59,13 @@
 
                     <div class="aa-single-field">
                         ${userError}
-                        <label for="username" pattern="[a-zA-Z0-9]{6,}">User name<span style="color: red">*</span></label><br/>
-                    <input type="text" name="username" value="${newUser.username}"/>    
+                        <label for="username">User name<span style="color: red">*</span></label><br/>
+                    <input type="text" name="username" pattern="[a-zA-Z0-9]{6,}" value="${newUser.username}"/>    
                     </div>
                     <div class="aa-single-field">
                          ${passError}
                         <label for="password1">Password<span style="color: red">*</span></label><br/>
-                        <input type="password" name="password1"/>         
+                        <input type="password" name="password1" />         
                     </div>
                     <div class="aa-single-field">
                         ${matchError}

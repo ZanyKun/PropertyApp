@@ -24,6 +24,4 @@ public class ReBuildingType extends BuildingInfo{
 	
 	String apartmentType;			//Studio, Residential, Serviced Apartments, Independent
 	String houseType;				//Independent, Farm House
-	
-	int balconyNum;					//# of balconies (No balconies for commercial spaces)
 }

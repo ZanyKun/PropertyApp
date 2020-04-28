@@ -10,4 +10,5 @@ public interface BuildingService {
 	boolean insertResidentialBuilding(ReBuildingType r);
 	boolean insertCommercialBuilding(ComBuildingType c);
 	List<BuildingInfo> retrieveAllBuildings();
+	List<BuildingInfo> retrieveBuildingsBySearch(String city, String state, String propertyType, String buildingType, String listingType, double minArea, double maxArea, float minBudget, float maxBudget);
 }

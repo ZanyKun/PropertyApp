@@ -41,12 +41,11 @@ public class BuildingInfo {
 	String city;					//								(required)
 	String state;					//								(required)
 	String projectName;				//								(Not required)
-	boolean hideAddress;			//True to hide address from buyers, false to show
 	String description;				//Description for building
 	
 	//For all options minus balconyNum for Commercial buildings
 	double plotArea;				//Total measured area where property stands (Required)
-	String areaUnit;				// sq.ft, sq. yards, sq. m, acres
+	String roomNum;					//# of rooms
 	String washroomNum;				//# of bathrooms
 	
 	String ownership;				//For commercial buildings: Freehold, leasehold, Power of Attorney, Cooperative Society
@@ -55,8 +54,8 @@ public class BuildingInfo {
 	String possessionBy;			//Time til ownership
 	String ageOfProperty;			//For Ready to Move: 0-1 year old, 2-3 year old etc...
 	
-	String expectedRent;				//For rent/lease
-	String expectedPrice;			//For sell
+	float expectedRent;				//For rent/lease
+	float expectedPrice;			//For sell
 	
 	@ElementCollection
 	List<String> amenities;

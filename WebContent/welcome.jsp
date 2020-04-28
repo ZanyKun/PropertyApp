@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false" import="acres.dto.UserInfo"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -69,10 +69,17 @@
                 </div>              
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6">
-                <div class="aa-header-right">
-                  <a href="register.test" class="aa-register">Register</a>
-                  <a href="login.test" class="aa-login">Login</a>
-                </div>
+              <%
+				  UserInfo user = (UserInfo) session.getAttribute("currentUser");
+				  if(user == null){
+						out.print("<div class='aa-header-right' style='display:block'>" +
+				                  "<a href='register.test' class='aa-register'>Register</a>" +
+				                  "<a href='login.test' class='aa-login'>Login</a> </div>");
+				  }else{
+						out.print("<div class='aa-header-right' id='loggedIn' style='display:block'>" +
+			                	"<a href='user_info' class='aa-register'>" + user.getUsername() + "</a>" +
+			                	"<a href='logout.test' class='aa-login'>Logout</a></div>"); 
+				  } %>
               </div>
             </div>
           </div>
@@ -222,22 +229,81 @@
 
   <!-- Advance Search -->
   <section id="aa-advance-search">
+  <form action="advance_search.test" method="post">
     <div class="container">
       <div class="aa-advance-search-area">
         <div class="form">
          <div class="aa-advance-search-top">
             <div class="row">
-              <div class="col-md-4">
-                <div class="aa-single-advance-search">
-                  <input type="text" placeholder="Type Your Desired Location">
-                </div>
+              <div class="col-md-2">
+              	<div class="aa-single-advance-search">
+              		<input type="text" name="city" placeholder="Enter City"/>
+              	</div>
+              </div>
+              <div class="col-md-2">
+              	<div class="aa-single-advance-search">
+              		<select name="state" required>
+              			<option>State</option>
+						<option value="AL">Alabama</option>
+						<option value="AK">Alaska</option>
+						<option value="AZ">Arizona</option>
+						<option value="AR">Arkansas</option>
+						<option value="CA">California</option>
+						<option value="CO">Colorado</option>
+						<option value="CT">Connecticut</option>
+						<option value="DE">Delaware</option>
+						<option value="DC">District Of Columbia</option>
+						<option value="FL">Florida</option>
+						<option value="GA">Georgia</option>
+						<option value="HI">Hawaii</option>
+						<option value="ID">Idaho</option>
+						<option value="IL">Illinois</option>
+						<option value="IN">Indiana</option>
+						<option value="IA">Iowa</option>
+						<option value="KS">Kansas</option>
+						<option value="KY">Kentucky</option>
+						<option value="LA">Louisiana</option>
+						<option value="ME">Maine</option>
+						<option value="MD">Maryland</option>
+						<option value="MA">Massachusetts</option>
+						<option value="MI">Michigan</option>
+						<option value="MN">Minnesota</option>
+						<option value="MS">Mississippi</option>
+						<option value="MO">Missouri</option>
+						<option value="MT">Montana</option>
+						<option value="NE">Nebraska</option>
+						<option value="NV">Nevada</option>
+						<option value="NH">New Hampshire</option>
+						<option value="NJ">New Jersey</option>
+						<option value="NM">New Mexico</option>
+						<option value="NY">New York</option>
+						<option value="NC">North Carolina</option>
+						<option value="ND">North Dakota</option>
+						<option value="OH">Ohio</option>
+						<option value="OK">Oklahoma</option>
+						<option value="OR">Oregon</option>
+						<option value="PA">Pennsylvania</option>
+						<option value="RI">Rhode Island</option>
+						<option value="SC">South Carolina</option>
+						<option value="SD">South Dakota</option>
+						<option value="TN">Tennessee</option>
+						<option value="TX">Texas</option>
+						<option value="UT">Utah</option>
+						<option value="VT">Vermont</option>
+						<option value="VA">Virginia</option>
+						<option value="WA">Washington</option>
+						<option value="WV">West Virginia</option>
+						<option value="WI">Wisconsin</option>
+						<option value="WY">Wyoming</option>
+					</select>
+              	</div>
               </div>
               <div class="col-md-2">
                 <div class="aa-single-advance-search">
                   <select name="propertyType">
                    <option value="0" selected>Category</option>
-                    <option value="1">Residential</option>
-                    <option value="2">Commercial</option>
+                    <option value="Residential">Residential</option>
+                    <option value="Commercial">Commercial</option>
                   </select>
                 </div>
               </div>
@@ -294,23 +360,24 @@
            <div class="row">
             <div class="col-md-6">
               <div class="aa-single-filter-search">
-                <span>AREA (SQ)</span>
-                <span>FROM</span>
-                <span id="skip-value-lower" class="example-val">30.00</span>
-                <span>TO</span>
-                <span id="skip-value-upper" class="example-val">100.00</span>
-                <div id="aa-sqrfeet-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                <span>AREA (SQ FT)</span>
+                <div>
+                	<input type="number" name="minArea" placeholder="minimum sq ft"/>
+                </div>
+                <div>
+                	<input type="number" name="maxArea" placeholder="max sq ft"/>
                 </div>                  
               </div>
             </div>
             <div class="col-md-6">
               <div class="aa-single-filter-search">
                 <span>PRICE ($)</span>
-                <span>FROM</span>
-                <span id="skip-value-lower2" class="example-val">30.00</span>
-                <span>TO</span>
-                <span id="skip-value-upper2" class="example-val">100.00</span>
-                <div id="aa-price-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                <div class="aa-single-advance-search">
+                	<input type="number" name="minBudget" placeholder="minimum budget"/>
+                </div>
+                <div>
+                	<input type="number" name="maxBudget" placeholder="maximum budget"/>
+                </div>
                 </div>      
               </div>
             </div>
@@ -318,7 +385,7 @@
          </div>
         </div>
       </div>
-    </div>
+    </form>
   </section>
   <!-- / Advance Search -->
 
@@ -648,7 +715,6 @@
     </div>
   </footer>
   <!-- / Footer -->
-
  
   
   <!-- jQuery library -->

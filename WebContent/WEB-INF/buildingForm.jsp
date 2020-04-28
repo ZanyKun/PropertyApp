@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>Home Property | Contact</title>
+    <title>Home Property | List a Property</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
@@ -78,10 +78,17 @@
                 </div>              
               </div>
               <div class="col-md-6 col-sm-6 col-xs-6">
-                <div class="aa-header-right">
-                  <a href="register.test" class="aa-register">Register</a>
-                  <a href="login.test" class="aa-login">Login</a>
-                </div>
+                <%
+				  UserInfo user = (UserInfo) session.getAttribute("currentUser");
+				  if(user == null){
+						out.print("<div class='aa-header-right' style='display:block'>" +
+				                  "<a href='register.test' class='aa-register'>Register</a>" +
+				                  "<a href='login.test' class='aa-login'>Login</a> </div>");
+				  }else{
+						out.print("<div class='aa-header-right' id='loggedIn' style='display:block'>" +
+			                	"<a href='user_info' class='aa-register'>" + user.getUsername() + "</a>" +
+			                	"<a href='logout.test' class='aa-login'>Logout</a></div>"); 
+				  } %>
               </div>
             </div>
           </div>
@@ -146,7 +153,6 @@
     </div>
   </section> 
   <!-- End Property header  -->
-<% UserInfo user = (UserInfo) session.getAttribute("currentUser"); %>
   <section id="aa-gallery">
     <div class="container">
       <div class="row">
@@ -168,12 +174,12 @@
             <fieldset id="first" class="tab">
             		<br/>
                     <label>List Property For:<span style="color:red">*</span></label><br/>
-                <input type="radio" name="propertyList" value="Sell" required/><label>Sell</label><br/>
-                <input type="radio" name="propertyList" value="Rent" required/><label>Rent</label>
+                <input type="radio" name="propertyList" value="Sell"/><label>Sell</label><br/>
+                <input type="radio" name="propertyList" value="Rent" /><label>Rent</label>
                 <br/><br/>
                     <label for="listing_type">Property Type:<span style="color: red">*</span></label><br/>
-                    <input type="radio" name="listingType" value="Residential" required/><label for="listing_Type">Residential</label>
-                <input type="radio" name="listingType" value="Commercial" required/><label for="Commercial">Commercial</label><br/>
+                <input type="radio" name="listingType" value="Residential"/><label for="listing_Type">Residential</label>
+                <input type="radio" name="listingType" value="Commercial"/><label for="listing_Type">Commercial</label><br/>
 
                 <!--Residential Division-->
                 <div class="Residential box" style="display:none">
@@ -338,8 +344,22 @@
                 <input type="text" name="plotArea" placeholder="Plot Area" required>
                 <label>sq. ft</label><br/>
                 <br/>
+                <label for="roomNum">Number of Rooms:<span style="color:red">*</span></label><br/>
+                <select name="roomNum" required> 
+                	<option value="None">None</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="9+">9+</option>
+                </select><br/>
                 <label for="washroomNum">Washrooms:<span style="color:red">*</span></label><br/>
-                <select value="washroomNum" required>
+                <select name="washroomNum" required>
                     <option value="None">None</option>
                     <option value="Shared">Shared</option>
                     <option value="1">1</option>
@@ -359,9 +379,11 @@
                 <select name="availability" required>
                     <option value="Under Construction">Under Construction</option>
                     <option value="Ready to Move">Ready to Move</option>
+                    <option value="By Appointment">By Appointment</option>
                 </select><br/>
                 <label for="possessionBy">Possession By:<span style="color:red">*</span></label>
                 <select name="possessionBy" required>
+                	<option value="Not Applicable">Not Applicable</option>
                     <option value="Within 3 months">Within 3 months</option>
                     <option value="Within 6 months">Within 6 months</option>
                     <option value="By 2021">By 2021</option>
@@ -396,11 +418,11 @@
                     </select><br/><br/>
                     <div class="Rent box4" style="display:none">
                     	<label for="expectedRent">Expected Rent:<span style="color:red">*</span> $</label>
-                    	<input type="text" name="expectedRent"><br/><br/>
+                    	<input type="number" name="expectedRent"><br/><br/>
                     </div>
                     <div class="Sell box4" style="display:none">
                     	<label for="expectedPrice">Expected Price:<span style="color:red">*</span> $</label>
-                    	<input type="text" name="expectedPrice"><br/>
+                    	<input type="number" name="expectedPrice"><br/>
                     </div>
                     <br/>
                     <label>Provide a description for your property:<span style="color:red">*</span></label><br/>
@@ -454,11 +476,11 @@
             </div>
             <div class="col-md-6 col-sm-12 col-xs-12">
               <div class="aa-footer-right">
-                <a href="#">Home</a>
+                <a href="welcome.jsp">Home</a>
                 <a href="#">Support</a>
                 <a href="#">License</a>
                 <a href="#">FAQ</a>
-                <a href="#">Privacy & Term</a>
+                <a href="#">Privacy and Term</a>
               </div>
             </div>            
           </div>
