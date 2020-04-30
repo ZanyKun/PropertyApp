@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('input[name="listingType"]').click(function(){
+    $('input[name="propertyType"]').click(function(){
         var inputValue = $(this).attr("value");
         var targetBox = $("." + inputValue);
         $(".box").not(targetBox).hide();
@@ -13,7 +13,7 @@ $(document).ready(function(){
         var targetBox = $("." + inputValue);
         $(".box2").not(targetBox).hide();
         $(targetBox).show();
-    });
+    });propertyType
 });
 
 $(document).ready(function(){

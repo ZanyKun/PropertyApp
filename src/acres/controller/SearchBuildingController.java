@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import acres.dto.BuildingInfo;
+import acres.dto.ComBuildingType;
+import acres.dto.ReBuildingType;
 import acres.service.BuildingService;
 
 @Controller
@@ -31,9 +33,25 @@ public class SearchBuildingController {
 		return mv;
 	}
 	
-	@PostMapping("property_details.test")
-	public ModelAndView getBuildingDetails() {
+	@GetMapping("property_details.test")
+	public ModelAndView getBuildingDetails(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
+		mv.setViewName("property_details");
+		String propertyType = request.getParameter("propertyType");
+		int buildingId = Integer.parseInt(request.getParameter("buildingId"));
+		
+		if(propertyType.equals("Residential")) {
+			BuildingInfo buildDetails = buildService.retrieveBuildingInfo(buildingId);
+			ReBuildingType retBuilding = buildService.retrieveResidentialBuilding(buildingId);
+			mv.addObject("buildingInfo", buildDetails);
+			mv.addObject("retBuilding", retBuilding); 
+		}
+		else {
+			BuildingInfo buildDetails = buildService.retrieveBuildingInfo(buildingId);
+			ComBuildingType retBuilding = buildService.retrieveCommercialBuilding(buildingId);
+			mv.addObject("buildingInfo", buildDetails);
+			mv.addObject("retBuilding", retBuilding);
+		}
 		
 		return mv;
 	}
@@ -41,6 +59,7 @@ public class SearchBuildingController {
 	@PostMapping("advance_search.test")
 	public ModelAndView getBuildingsBySearch(HttpServletRequest request, HttpSession session) {
 		ModelAndView mv = new ModelAndView("properties");
+		String userInput = request.getParameter("userInput");
 		String city = request.getParameter("city");
 		String state = request.getParameter("state");
 		String propertyType = request.getParameter("propertyType");

@@ -28,13 +28,12 @@ import lombok.NoArgsConstructor;
 @DynamicInsert
 @DynamicUpdate
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "listing_type")
-@Component
 public class BuildingInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int buildingId;
 	String propertyList;			//Sell, Rent
+	String propertyType;			//Commercial, Residential
 	
 	//For all options
 	String address;					//House Number and Street Name	(required)

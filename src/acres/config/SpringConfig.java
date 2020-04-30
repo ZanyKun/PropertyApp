@@ -3,16 +3,20 @@ package acres.config;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Environment;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
@@ -34,7 +38,7 @@ import acres.filter.RequestFilter;
 @PropertySource("classpath:database.properties")
 @ComponentScan(basePackages = {"acres"})
 public class SpringConfig implements WebMvcConfigurer{
-
+	
 	@Value("${hbm2ddl}") String hbm2ddl;
 	@Value("${url}") String url;
 	@Value("${name}") String username;
@@ -81,7 +85,7 @@ public class SpringConfig implements WebMvcConfigurer{
 	public ViewResolver resolver() {
 		return new InternalResourceViewResolver("/WEB-INF/",".jsp");
 	}
-	
+
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("welcome");

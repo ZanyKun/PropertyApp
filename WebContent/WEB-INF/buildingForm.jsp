@@ -178,8 +178,8 @@
                 <input type="radio" name="propertyList" value="Rent" /><label>Rent</label>
                 <br/><br/>
                     <label for="listing_type">Property Type:<span style="color: red">*</span></label><br/>
-                <input type="radio" name="listingType" value="Residential"/><label for="listing_Type">Residential</label>
-                <input type="radio" name="listingType" value="Commercial"/><label for="listing_Type">Commercial</label><br/>
+                <input type="radio" name="propertyType" value="Residential"/><label for="propertyType">Residential</label>
+                <input type="radio" name="propertyType" value="Commercial"/><label for="listing_Type">Commercial</label><br/>
 
                 <!--Residential Division-->
                 <div class="Residential box" style="display:none">
@@ -418,11 +418,11 @@
                     </select><br/><br/>
                     <div class="Rent box4" style="display:none">
                     	<label for="expectedRent">Expected Rent:<span style="color:red">*</span> $</label>
-                    	<input type="number" name="expectedRent"><br/><br/>
+                    	<input type="number" step=0.01 name="expectedRent"><br/><br/>
                     </div>
                     <div class="Sell box4" style="display:none">
-                    	<label for="expectedPrice">Expected Price:<span style="color:red">*</span> $</label>
-                    	<input type="number" name="expectedPrice"><br/>
+                    	<label for="ex pectedPrice">Expected Price:<span style="color:red">*</span> $</label>
+                    	<input type="number" step=0.01 name="expectedPrice"><br/>
                     </div>
                     <br/>
                     <label>Provide a description for your property:<span style="color:red">*</span></label><br/>

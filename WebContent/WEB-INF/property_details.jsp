@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isELIgnored="false" import="acres.dto.UserInfo, acres.dto.BuildingInfo,acres.dto.ReBuildingType,acres.dto.ComBuildingType"%>
-    
-    <%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
-    <%@taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
-    
+    pageEncoding="ISO-8859-1" isELIgnored="false" import="acres.dto.UserInfo, acres.dto.ReBuildingType, acres.dto.ComBuildingType, acres.dto.BuildingInfo"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>Home Property | Properties</title>
+    <title>Home Property | Properties Details</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     
-    
+   
     <!-- Font awesome -->
     <link href="css/font-awesome.css" rel="stylesheet">
     <!-- Bootstrap -->
@@ -44,8 +41,10 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+  
+
   </head>
-<body class="aa-price-range">   
+  <body class="aa-price-range">  
   <!-- Pre Loader -->
   <div id="aa-preloader-area">
     <div class="pulse"></div>
@@ -53,7 +52,6 @@
   <!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"><i class="fa fa-angle-double-up"></i></a>
   <!-- END SCROLL TOP BUTTON -->
-
 
   <!-- Start header section -->
   <header id="aa-header">  
@@ -113,18 +111,18 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right aa-main-nav">
-            <li><a href="welcome.jsp">HOME</a></li>
+            <li><a href="index.html">HOME</a></li>
              <li class="dropdown active">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="properties.html">PROPERTIES <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-              	<li><a href="list_properties.test">ALL PROPERTIES</a></li>                
+              <a class="dropdown-toggle" data-toggle="dropdown">PROPERTIES <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">  
+                <li><a href="list_properties.test">ALL PROPERTIES</a></li>
                 <li><a href="properties-detail.html">COMMERCIAL PROPERTIES</a></li>
                 <li><a href="properties-detail.html">RESIDENTIAL PROPERTIES</a></li>
               </ul>
             </li>
             <li><a href="list_property.test">LIST PROPERTY</a></li>
             <li><a href="contact.html">CONTACT</a></li>
-          </ul>                           
+          </ul>                               
         </div><!--/.nav-collapse -->       
       </div>          
     </nav> 
@@ -138,126 +136,210 @@
       <div class="row">
         <div class="col-md-12">
           <div class="aa-property-header-inner">
-            <h2>Properties Page</h2>
+            <h2>Properties Details</h2>
             <ol class="breadcrumb">
-            <li><a href="#">HOME</a></li>            
-            <li class="active">PROPERTIES</li>
+            <li><a href="welcome.jsp">HOME</a></li>            
+            <li class="active">PROPERTY DETAILS</li>
           </ol>
           </div>
         </div>
       </div>
     </div>
   </section> 
-  <!-- End Proerty header  -->
-
+  <!-- End Property header  -->
+  
+  
   <!-- Start Properties  -->
   <section id="aa-properties">
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <div class="aa-properties-content">
-            <!-- start properties content head -->
-            <div class="aa-properties-content-head">              
-              <div class="aa-properties-content-head-right">
-                <label style="font-size: 14px">Change the Layout </label>
-                <a id="aa-grid-properties" href="#"><span class="fa fa-th"></span></a>
-                <a id="aa-list-properties" href="#"><span class="fa fa-list"></span></a>
-              </div>            
-            </div>
+          <div class="aa-properties-content">            
             <!-- Start properties content body -->
-            <div class="aa-properties-content-body">
-              <ul class="aa-properties-nav">
-              <core:forEach var="buildings" items="${buildings}">
-              	<li>
-                  <article class="aa-properties-item">
-                    <a class="aa-properties-item-img" href="#">
-                      <img alt="img" src="img/item/6.jpg"> <!--Image associated with Property-->
-                    </a>
-                    <div class="aa-tag for-rent">
-                      For ${buildings.propertyList}
-                    </div>
-                    <div class="aa-properties-item-content">
-                      <div class="aa-properties-info">
-                        <span>
-                        <core:choose>
-	                        <core:when test="${buildings.roomNum.equals('None')}">
+            <div class="aa-properties-details">
+             <div class="aa-properties-details-img">
+               <img src="img/slider/1.jpg" alt="img">
+               <img src="img/slider/2.jpg" alt="img">
+               <img src="img/slider/3.jpg" alt="img">
+             </div>
+             <div class="aa-properties-info">
+               <h1>${buildingInfo.propertyType}</h1>
+               <h2>
+               <core:if test="${buildingInfo.propertyType.equals('Residential')}">
+               <core:choose>
+          				<core:when test="${retBuilding.reBuildingType.equals('Apartment')}">
+          					<core:out value="Apartment | "></core:out>
+          					<core:out value="${retBuilding.apartmentType}"></core:out>
+          				</core:when>
+          				<core:when test="${retBuilding.reBuildingType.equals('House')}">
+          					<core:out value="House/Villa | "></core:out>
+          					<core:out value="${retBuilding.houseType}"></core:out>
+          				</core:when>
+               </core:choose>
+			   </core:if>
+               <core:if test="${buildingInfo.propertyType.equals('Commercial')}">
+               <core:choose>
+               				<core:when test="${retBuilding.comBuildingType.equals('Office')}">
+               					<core:out value="Office | "></core:out>
+               					<core:out value="${retBuilding.officeType}"></core:out>
+               				</core:when>
+               				<core:when test="${retBuilding.comBuildingType.equals('Retail')}">
+               					<core:out value="Retail | "></core:out>
+               					<core:out value="${retBuilding.retailType}"></core:out>
+               				</core:when>
+               				<core:when test="${retBuilding.comBuildingType.equals('Land')}">
+               					<core:out value="Land | "></core:out>
+               					<core:out value="${retBuilding.landType}"></core:out>
+               				</core:when>
+               				<core:when test="${retBuilding.comBuildingType.equals('Storage')}">
+               					<core:out value="Industry Storage | "></core:out>
+               					<core:out value="${retBuilding.storageType}"></core:out>
+               				</core:when>
+               				<core:when test="${retBuilding.comBuildingType.equals('Hospitality')}">
+               					<core:out value="Hospitality | "></core:out>
+               					<core:out value="${retBuilding.hospitalityType}"></core:out>
+               				</core:when>
+               				<core:otherwise>
+               					<core:out value="Other Building Type"></core:out>
+               				</core:otherwise>
+               	</core:choose>
+               	</core:if>
+               </h2>
+               <h2>${buildingInfo.projectName}</h2>
+               
+               <core:choose>
+               		<core:when test="${buildingInfo.expectedRent != 0}">
+               			<span class="aa-price">
+               				<core:out value="$ ${buildingInfo.expectedRent} /month"></core:out>
+               			</span>
+               		</core:when>
+               		<core:when test="${buildingInfo.expectedPrice != 0}">
+               			<span class="aa-price">
+               				<core:out value="$ ${buildingInfo.expectedPrice}"></core:out>
+               			</span>
+               		</core:when>
+               </core:choose>
+               <p>${buildingInfo.description}</p>
+               <h4>Property Features</h4>
+               <ul>
+               	 <li>
+               	 <core:choose>
+	                        <core:when test="${buildings.roomNum}.equals('None')">
 	                        	<core:out value="No Rooms"></core:out>
 	                        </core:when>
-	                        <core:when test="${buildings.roomNum.equals('1')}">
+	                        <core:when test="${buildings.roomNum}.equals('1')">
 	                        	<core:out value="${buildings.roomNum} Room"></core:out>
 	                        </core:when>
 	                        <core:otherwise>
 	                        	<core:out value="${buildings.roomNum} Rooms"></core:out>
 	                        </core:otherwise>
-                        </core:choose>
-                        </span>
-                        <span>
-                        <core:choose>
-                        	<core:when test="${buildings.washroomNum.equals('None')}">
+                 </core:choose>
+               	 </li>
+                 <li>
+                 <core:choose>
+                        	<core:when test="${buildings.washroomNum}.equals('None')">
                         		<core:out value="No Washroom"></core:out>
                         	</core:when>
-                        	<core:when test="${buildings.washroomNum.equals('Shared')}">
+                        	<core:when test="${buildings.washroomNum}.equals('Shared')">
                         		<core:out value="Shared Washroom"></core:out>
                         	</core:when>
-                        	<core:when test="${buildings.washroomNum.equals('1')}">
+                        	<core:when test="${buildings.washroomNum}.equals('1')">
                         		<core:out value="1 Washroom"></core:out>
                         	</core:when>
                         	<core:otherwise>
                         		<core:out value="${buildings.washroomNum} Washrooms"></core:out>
                         	</core:otherwise>
                         </core:choose>
-                        </span>
-                        <span>${buildings.plotArea} sq. ft</span>
+                 </li>
+                 <core:forEach var="amenities" items="${buildingInfo.amenities}">
+                 	<li>
+                 		<core:out value="${amenities}"></core:out>
+                 	</li>
+                 </core:forEach>
+               </ul>
+               <h4>Property Map</h4>
+               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6851.201919469417!2d-86.11773906635584!3d33.47324776828677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x888bdb60cc49c571%3A0x40451ca6baf275c7!2s36008+AL-77%2C+Talladega%2C+AL+35160%2C+USA!5e0!3m2!1sbn!2sbd!4v1460452919256" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+             </div>
+             <!-- Properties social share -->
+             <div class="aa-properties-social">
+               <ul>
+                 <li>Share</li>
+                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                 <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+               </ul>
+             </div>
+             <!-- Nearby properties -->
+             <div class="aa-nearby-properties">
+               <div class="aa-title">
+                 <h2>Nearby Properties</h2>
+                 <span></span>
+               </div>
+               <div class="aa-nearby-properties-area">
+                 <div class="row">
+                   <div class="col-md-6">
+                     <article class="aa-properties-item">
+                        <a class="aa-properties-item-img" href="#">
+                          <img alt="img" src="img/item/1.jpg">
+                        </a>
+                        <div class="aa-tag for-sale">
+                          For Sale
+                        </div>
+                        <div class="aa-properties-item-content">
+                          <div class="aa-properties-info">
+                            <span>5 Rooms</span>
+                            <span>2 Beds</span>
+                            <span>3 Baths</span>
+                            <span>1100 SQ FT</span>
+                          </div>
+                          <div class="aa-properties-about">
+                            <h3><a href="#">Appartment Title</a></h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
+                          </div>
+                          <div class="aa-properties-detial">
+                            <span class="aa-price">
+                              $35000
+                            </span>
+                            <a class="aa-secondary-btn" href="#">View Details</a>
+                          </div>
+                        </div>
+                      </article>
+                   </div>
+                   <div class="col-md-6">
+                     <article class="aa-properties-item">
+                      <a class="aa-properties-item-img" href="#">
+                        <img alt="img" src="img/item/2.jpg">
+                      </a>
+                      <div class="aa-tag for-sale">
+                        For Sale
                       </div>
-                      <div class="aa-properties-about">
-                        <h3><a href="#">${buildings.projectName}</a></h3>
-                        <p>${buildings.description}</p>                      
+                      <div class="aa-properties-item-content">
+                        <div class="aa-properties-info">
+                          <span>5 Rooms</span>
+                          <span>2 Beds</span>
+                          <span>3 Baths</span>
+                          <span>1100 SQ FT</span>
+                        </div>
+                        <div class="aa-properties-about">
+                          <h3><a href="#">Appartment Title</a></h3>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim molestiae vero ducimus quibusdam odit vitae.</p>                      
+                        </div>
+                        <div class="aa-properties-detial">
+                          <span class="aa-price">
+                            $35000
+                          </span>
+                          <a class="aa-secondary-btn" href="#">View Details</a>
+                        </div>
                       </div>
-                      <div class="aa-properties-detial">
-                        <span class="aa-price">
-                          <core:choose>
-                          	<core:when test="${buildings.expectedRent != 0}">
-                          		<core:out value="$ ${buildings.expectedRent}/month"></core:out>
-                          	</core:when> 
-                          	<core:when test="${buildings.expectedPrice != 0}">
-                          		<core:out value="$ ${buildings.expectedRent}"></core:out>
-                          	</core:when>
-                          </core:choose>
-                       </span>
-                          <spring:form action="property_details.test" method="get">
-                          	<input type="hidden" name="buildingId" value="${buildings.buildingId}"/>
-                          	<input type="hidden" name="propertyType" value="${buildings.propertyType}"/>
-                          	<input type="submit" class="aa-secondary-btn" value="View Details"/>
-                          </spring:form>
-                      </div>
-                    </div>
-                  </article>
-                </li>
-              </core:forEach>
-              </ul>
-            </div>
-            <!-- Start properties content bottom -->
-            <div class="aa-properties-content-bottom">
-              <nav>
-                <ul class="pagination">
-                  <li>
-                    <a href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li  class="active"><a href="">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li>
-                    <a href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+                    </article>
+                   </div>
+                 </div>
+               </div>
+
+             </div>
+
+            </div>           
           </div>
         </div>
         <!-- Start properties sidebar -->
@@ -266,109 +348,35 @@
             <!-- Start Single properties sidebar -->
             <div class="aa-properties-single-sidebar">
               <h3>Properties Search</h3>
-              <form action="advance_search.test" method="post">
+              <form action="">
                 <div class="aa-single-advance-search">
-                  <input type="text" placeholder="Enter City">
+                  <input type="text" placeholder="Type Your Location">
                 </div>
                 <div class="aa-single-advance-search">
-                	<select name="state" required>
-              			<option>State</option>
-						<option value="AL">Alabama</option>
-						<option value="AK">Alaska</option>
-						<option value="AZ">Arizona</option>
-						<option value="AR">Arkansas</option>
-						<option value="CA">California</option>
-						<option value="CO">Colorado</option>
-						<option value="CT">Connecticut</option>
-						<option value="DE">Delaware</option>
-						<option value="DC">District Of Columbia</option>
-						<option value="FL">Florida</option>
-						<option value="GA">Georgia</option>
-						<option value="HI">Hawaii</option>
-						<option value="ID">Idaho</option>
-						<option value="IL">Illinois</option>
-						<option value="IN">Indiana</option>
-						<option value="IA">Iowa</option>
-						<option value="KS">Kansas</option>
-						<option value="KY">Kentucky</option>
-						<option value="LA">Louisiana</option>
-						<option value="ME">Maine</option>
-						<option value="MD">Maryland</option>
-						<option value="MA">Massachusetts</option>
-						<option value="MI">Michigan</option>
-						<option value="MN">Minnesota</option>
-						<option value="MS">Mississippi</option>
-						<option value="MO">Missouri</option>
-						<option value="MT">Montana</option>
-						<option value="NE">Nebraska</option>
-						<option value="NV">Nevada</option>
-						<option value="NH">New Hampshire</option>
-						<option value="NJ">New Jersey</option>
-						<option value="NM">New Mexico</option>
-						<option value="NY">New York</option>
-						<option value="NC">North Carolina</option>
-						<option value="ND">North Dakota</option>
-						<option value="OH">Ohio</option>
-						<option value="OK">Oklahoma</option>
-						<option value="OR">Oregon</option>
-						<option value="PA">Pennsylvania</option>
-						<option value="RI">Rhode Island</option>
-						<option value="SC">South Carolina</option>
-						<option value="SD">South Dakota</option>
-						<option value="TN">Tennessee</option>
-						<option value="TX">Texas</option>
-						<option value="UT">Utah</option>
-						<option value="VT">Vermont</option>
-						<option value="VA">Virginia</option>
-						<option value="WA">Washington</option>
-						<option value="WV">West Virginia</option>
-						<option value="WI">Wisconsin</option>
-						<option value="WY">Wyoming</option>
-					</select>
-                </div>
-                <div class="aa-single-advance-search">
-                  <select name="propertyType">
-                   <option value="0" selected>Category</option>
-                    <option value="1">Residential</option>
-                    <option value="2">Commercial</option>
+                  <select id="" name="">
+                   <option selected="" value="0">Category</option>
+                    <option value="1">Flat</option>
+                    <option value="2">Land</option>
+                    <option value="3">Plot</option>
+                    <option value="4">Commercial</option>
                   </select>
                 </div>
                 <div class="aa-single-advance-search">
-                  <select name="buildingType">
-                    <option value="0" selected>Building Type</option>
-                    <optgroup label="Residential Listings">
-                    	<option value="Studio Apartment">Studio Apartment</option>
-                    	<option value="Residential Apartment">Residential Apartment</option>
-                    	<option value="Serviced Apartment">Serviced Apartment</option>
-                    	<option value="Independent Apartment">Independent Apartment</option>
-                    	<option value="Residential Land">Residential Land</option>
-                    	<option value="Independent House">Independent House</option>
-                    	<option value="Farm House">Farm House</option>
-                    </optgroup>
-                    <optgroup label="Commercial Listings">
-                    	<option value="Commercial Office">Commercial Office</option>
-                    	<option value="Office in IT Park">Office in IT Park</option>
-                    	<option value="Office in Business Par">Office in Business Park</option>
-                    	<option value="Business Center">Business Center</option>
-                    	<option value="Time Share">Time Share Office</option>
-                    	<option value="Commercial Shop">Commercial Shop</option>
-                    	<option value="Commercial Showroom">Commercial Showroom</option>
-                    	<option value="Space in Retail Mall">Space in Retail Mall</option>
-                    	<option value="Commercial Land">Commercial Land</option>
-                    	<option value="Agricultural Land">Agricultural Land</option>
-                    	<option value="Industrial Land">Industrial Land</option>
-                    	<option value="Warehouse">Warehouse Storage</option>
-                    	<option value="Cold">Cold Storage</option>
-                    	<option value="Hotel/Resorts">Hotel/Resorts</option>
-                    	<option value="Guesthouse/Banquet Halls">Guesthouse/Banquet Halls</option>
-                    </optgroup>
+                  <select id="" name="">
+                    <option selected="" value="0">Type</option>
+                    <option value="1">Flat</option>
+                    <option value="2">Land</option>
+                    <option value="3">Plot</option>
+                    <option value="4">Commercial</option>
                   </select>
                 </div>
                 <div class="aa-single-advance-search">
-                  <select name="listingType">
-                    <option value="0" selected>Listing</option>
-                    <option value="Sale">Sale</option>
-                    <option value="Rent">Rent</option>
+                  <select id="" name="">
+                    <option selected="" value="0">Type</option>
+                    <option value="1">Flat</option>
+                    <option value="2">Land</option>
+                    <option value="3">Plot</option>
+                    <option value="4">Commercial</option>
                   </select>
                 </div>
                 <div class="aa-single-filter-search">
@@ -463,11 +471,11 @@
             </div>
             <div class="col-md-6 col-sm-12 col-xs-12">
               <div class="aa-footer-right">
-                <a href="welcome.jsp">Home</a>
+                <a href="#">Home</a>
                 <a href="#">Support</a>
                 <a href="#">License</a>
                 <a href="#">FAQ</a>
-                <a href="#">Privacy and Term</a>
+                <a href="#">Privacy & Term</a>
               </div>
             </div>            
           </div>
@@ -478,8 +486,6 @@
   </footer>
   <!-- / Footer -->
 
-
- 
   <!-- jQuery library -->
   <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
   <script src="js/jquery.min.js"></script>   

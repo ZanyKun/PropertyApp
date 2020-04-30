@@ -10,8 +10,9 @@ public interface BuildingRepository {
 	public boolean insertBuilding(BuildingInfo b);
 	public boolean updateBuilding(BuildingInfo b);
 	public boolean deleteBuilding(BuildingInfo b);
-	public ReBuildingType getBuilding(ReBuildingType b);
-	public ComBuildingType getBuilding(ComBuildingType b);
+	public BuildingInfo getBuildingDetails(int id);
+	public ReBuildingType getResidentialDetails(int id);
+	public ComBuildingType getCommercialDetails(int id);
 	public List<BuildingInfo> getAllBuildings();
 	public List<ReBuildingType> getAllResidentialBuildings();
 	public List<ComBuildingType> getAllCommercialBuildings();

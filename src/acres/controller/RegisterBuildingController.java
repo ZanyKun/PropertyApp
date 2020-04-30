@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,17 +22,23 @@ public class RegisterBuildingController {
 	@Autowired BuildingService buildRep;
 	
 	@PostMapping("/insert_property.test")
-	public ModelAndView registerBuilding(HttpServletRequest request, @ModelAttribute ReBuildingType residentialInfo, @ModelAttribute ComBuildingType commercialInfo, HttpSession session) {
+	public ModelAndView registerBuilding(HttpServletRequest request, @ModelAttribute ReBuildingType residentialInfo, BindingResult resResult, @ModelAttribute ComBuildingType commercialInfo, BindingResult comResult, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		UserInfo user = (UserInfo) request.getAttribute("currentUser");
-//		float rent = Float.parseFloat(request.getParameter("expectedRent"));
-//		float price = Float.parseFloat(request.getParameter("expectedPrice"));
-//		residentialInfo.setExpectedRent(rent);
-//		residentialInfo.setExpectedPrice(price);
-//		commercialInfo.setExpectedRent(rent);
-//		commercialInfo.setExpectedPrice(price);
+		String inputRent = request.getParameter("expectedRent");
+		String inputPrice = request.getParameter("expectedPrice");
+		if(!(inputRent.equals(""))) {
+			float rent = Float.parseFloat(inputRent);
+			commercialInfo.setExpectedRent(rent);
+			residentialInfo.setExpectedRent(rent);
+		}
+		else {
+			float price = Float.parseFloat(inputPrice);
+			residentialInfo.setExpectedPrice(price);
+			commercialInfo.setExpectedPrice(price);
+		}
 		
-		String propertyType = request.getParameter("listingType");
+		String propertyType = request.getParameter("propertyType");
 		
 		if(session.getAttribute("currentUser") == null) {
 			mv.setViewName("buildingForm");

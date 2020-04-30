@@ -235,15 +235,86 @@
         <div class="form">
          <div class="aa-advance-search-top">
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-md-4">
               	<div class="aa-single-advance-search">
-              		<input type="text" name="city" placeholder="Enter City"/>
+              		<input type="text" name="userInput" placeholder="Enter Project Name"/>
               	</div>
               </div>
               <div class="col-md-2">
-              	<div class="aa-single-advance-search">
-              		<select name="state" required>
-              			<option>State</option>
+                <div class="aa-single-advance-search">
+                  <select name="propertyType">
+                   <option value="0" selected>Category</option>
+                    <option value="Residential">Residential</option>
+                    <option value="Commercial">Commercial</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                 <div class="aa-single-advance-search">
+                  <select name="buildingType">
+                    <option value="0" selected>Building Type</option>
+                    <optgroup label="Residential Listings">
+                    	<option value="Studio Apartment">Studio Apartment</option>
+                    	<option value="Residential Apartment">Residential Apartment</option>
+                    	<option value="Serviced Apartment">Serviced Apartment</option>
+                    	<option value="Independent Apartment">Independent Apartment</option>
+                    	<option value="Residential Land">Residential Land</option>
+                    	<option value="Independent House">Independent House</option>
+                    	<option value="Farm House">Farm House</option>
+                    </optgroup>
+                    <optgroup label="Commercial Listings">
+                    	<option value="Commercial Office">Commercial Office</option>
+                    	<option value="Office in IT Park">Office in IT Park</option>
+                    	<option value="Office in Business Par">Office in Business Park</option>
+                    	<option value="Business Center">Business Center</option>
+                    	<option value="Time Share">Time Share Office</option>
+                    	<option value="Commercial Shop">Commercial Shop</option>
+                    	<option value="Commercial Showroom">Commercial Showroom</option>
+                    	<option value="Space in Retail Mall">Space in Retail Mall</option>
+                    	<option value="Commercial Land">Commercial Land</option>
+                    	<option value="Agricultural Land">Agricultural Land</option>
+                    	<option value="Industrial Land">Industrial Land</option>
+                    	<option value="Warehouse">Warehouse Storage</option>
+                    	<option value="Cold">Cold Storage</option>
+                    	<option value="Hotel/Resorts">Hotel/Resorts</option>
+                    	<option value="Guesthouse/Banquet Halls">Guesthouse/Banquet Halls</option>
+                    </optgroup>
+                  </select>
+              </div>
+              </div>
+              <div class="col-md-2">
+                 <div class="aa-single-advance-search">
+                  <select name="listingType">
+                    <option value="0" selected>Listing</option>
+                    <option value="Sale">Sale</option>
+                    <option value="Rent">Rent</option>
+                  </select>
+              	</div>
+              </div>
+              <div class="col-md-2">
+                <div class="aa-single-advance-search">
+                  <input class="aa-search-btn" type="submit" value="Search">
+                </div>
+              </div>
+            </div>
+          </div>
+         <div class="aa-advance-search-bottom">
+           <div class="row">
+            <div class="col-md-3">
+            	<div class="aa-single-filter-search">
+            		<div class="aa-single-advance-search">
+            			<span>City</span>
+            			<div>
+            				<input type="text" name="city">
+            			</div>
+            		</div>
+            	</div>
+            </div>
+           	<div class="col-md-3">
+              	<div class="aa-single-filter-search">
+              		<span>State</span>
+              		<div class="aa-single-advance-search">
+              		<select name="state">
 						<option value="AL">Alabama</option>
 						<option value="AK">Alaska</option>
 						<option value="AZ">Arizona</option>
@@ -296,87 +367,28 @@
 						<option value="WI">Wisconsin</option>
 						<option value="WY">Wyoming</option>
 					</select>
+					</div>
               	</div>
               </div>
-              <div class="col-md-2">
-                <div class="aa-single-advance-search">
-                  <select name="propertyType">
-                   <option value="0" selected>Category</option>
-                    <option value="Residential">Residential</option>
-                    <option value="Commercial">Commercial</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-2">
-                 <div class="aa-single-advance-search">
-                  <select name="buildingType">
-                    <option value="0" selected>Building Type</option>
-                    <optgroup label="Residential Listings">
-                    	<option value="Studio Apartment">Studio Apartment</option>
-                    	<option value="Residential Apartment">Residential Apartment</option>
-                    	<option value="Serviced Apartment">Serviced Apartment</option>
-                    	<option value="Independent Apartment">Independent Apartment</option>
-                    	<option value="Residential Land">Residential Land</option>
-                    	<option value="Independent House">Independent House</option>
-                    	<option value="Farm House">Farm House</option>
-                    </optgroup>
-                    <optgroup label="Commercial Listings">
-                    	<option value="Commercial Office">Commercial Office</option>
-                    	<option value="Office in IT Park">Office in IT Park</option>
-                    	<option value="Office in Business Par">Office in Business Park</option>
-                    	<option value="Business Center">Business Center</option>
-                    	<option value="Time Share">Time Share Office</option>
-                    	<option value="Commercial Shop">Commercial Shop</option>
-                    	<option value="Commercial Showroom">Commercial Showroom</option>
-                    	<option value="Space in Retail Mall">Space in Retail Mall</option>
-                    	<option value="Commercial Land">Commercial Land</option>
-                    	<option value="Agricultural Land">Agricultural Land</option>
-                    	<option value="Industrial Land">Industrial Land</option>
-                    	<option value="Warehouse">Warehouse Storage</option>
-                    	<option value="Cold">Cold Storage</option>
-                    	<option value="Hotel/Resorts">Hotel/Resorts</option>
-                    	<option value="Guesthouse/Banquet Halls">Guesthouse/Banquet Halls</option>
-                    </optgroup>
-                  </select>
-              </div>
-              </div>
-              <div class="col-md-2">
-                 <div class="aa-single-advance-search">
-                  <select name="listingType">
-                    <option value="0" selected>Listing</option>
-                    <option value="Sale">Sale</option>
-                    <option value="Rent">Rent</option>
-                  </select>
-              </div>
-              </div>
-              <div class="col-md-2">
-                <div class="aa-single-advance-search">
-                  <input class="aa-search-btn" type="submit" value="Search">
-                </div>
-              </div>
-            </div>
-          </div>
-         <div class="aa-advance-search-bottom">
-           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="aa-single-filter-search">
-                <span>AREA (SQ FT)</span>
+                <span>Area (sq. ft)</span>
                 <div>
-                	<input type="number" name="minArea" placeholder="minimum sq ft"/>
+                	<input type="number" name="minArea" step=0.01 placeholder="minimum sq ft"/>
                 </div>
                 <div>
-                	<input type="number" name="maxArea" placeholder="max sq ft"/>
+                	<input type="number" name="maxArea" step=0.00 placeholder="max sq ft"/>
                 </div>                  
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="aa-single-filter-search">
-                <span>PRICE ($)</span>
+                <span>Budget ($)</span>
                 <div class="aa-single-advance-search">
-                	<input type="number" name="minBudget" placeholder="minimum budget"/>
+                	<input type="number" name="minBudget" step=0.01 placeholder="minimum budget"/>
                 </div>
                 <div>
-                	<input type="number" name="maxBudget" placeholder="maximum budget"/>
+                	<input type="number" name="maxBudget" step=0.01 placeholder="maximum budget"/>
                 </div>
                 </div>      
               </div>

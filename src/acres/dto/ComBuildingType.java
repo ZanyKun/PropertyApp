@@ -1,5 +1,6 @@
 package acres.dto;
 
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -17,9 +18,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+
 @DynamicInsert
-@DiscriminatorValue("Commercial")
-@Component
 public class ComBuildingType extends BuildingInfo{
 	String comBuildingType;			//Offices, Retail, Land, Industry Storage, Hospitality, Others
 	

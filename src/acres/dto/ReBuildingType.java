@@ -17,8 +17,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @DynamicInsert
-@DiscriminatorValue("Residental")
-@Component
 public class ReBuildingType extends BuildingInfo{
 	String reBuildingType;			//Apartment/Flat/BuilderFloor, Residential Land, House/Villa, Others
 	

@@ -54,21 +54,19 @@ public class BuildingRepositoryImpl implements BuildingRepository{
 	}
 	
 	@Override
-	public ReBuildingType getBuilding(ReBuildingType b) {
+	public ReBuildingType getResidentialDetails(int id) {
 		try(Session s = sf.openSession()){
 		s.beginTransaction();
-		ReBuildingType building = s.get(ReBuildingType.class, b.getBuildingId());
-		s.close();
+		ReBuildingType building = s.get(ReBuildingType.class, id);
 		return building;
 		}
 	}
 	
 	@Override
-	public ComBuildingType getBuilding(ComBuildingType b) {
+	public ComBuildingType getCommercialDetails(int id) {
 		Session s = sf.openSession();
 		s.beginTransaction();
-		ComBuildingType building = s.get(ComBuildingType.class, b.getBuildingId());
-		s.close();
+		ComBuildingType building = s.get(ComBuildingType.class, id);
 		return building;
 	}
 
@@ -79,7 +77,6 @@ public class BuildingRepositoryImpl implements BuildingRepository{
 		Criteria cr = s.createCriteria(BuildingInfo.class);
 		cr.setFirstResult(0);
 		cr.setMaxResults(6);
-		s.close();
 		return cr.list();
 	}
 
@@ -91,7 +88,6 @@ public class BuildingRepositoryImpl implements BuildingRepository{
 		Criteria cr = s.createCriteria(ReBuildingType.class);
 		cr.setFirstResult(1);
 		cr.setMaxResults(6);
-		s.close();
 		return cr.list();
 	}
 
@@ -102,7 +98,6 @@ public class BuildingRepositoryImpl implements BuildingRepository{
 		Criteria cr = s.createCriteria(ComBuildingType.class);
 		cr.setFirstResult(1);
 		cr.setMaxResults(6);
-		s.close();
 		return cr.list();
 	}
 
@@ -119,12 +114,9 @@ public class BuildingRepositoryImpl implements BuildingRepository{
 			if(state != "") {
 				cr.add(Restrictions.like("state", state));
 			}
-//			if(propertyType != "0") {
-//				cr.add(Restrictions.like("listing_Type", propertyType));
-//			}
-//			if(buildingType != "0") {
-//				cr.add
-//			}
+			if(propertyType != "0") {
+				cr.add(Restrictions.like("propertyType", propertyType));
+			}
 			if(listingType != "0") {
 				cr.add(Restrictions.like("propertyList", listingType));
 			}
@@ -153,6 +145,14 @@ public class BuildingRepositoryImpl implements BuildingRepository{
 			
 			return cr.list();
 		}
+	}
+
+	@Override
+	public BuildingInfo getBuildingDetails(int id) {
+		Session s = sf.openSession();
+		s.beginTransaction();
+		BuildingInfo building = s.get(BuildingInfo.class, id);
+		return building;
 	}
 
 	
